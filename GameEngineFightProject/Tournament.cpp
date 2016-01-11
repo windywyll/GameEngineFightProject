@@ -16,5 +16,5 @@ Tournament::~Tournament()
 
 void Tournament::selectMode()
 {
-	string noTournamentForYou = "You were too late to enter the tournament. Maybe next time.";
+	cout << endl << "You were too late to enter the tournament. Maybe next time." << endl << endl;
 }

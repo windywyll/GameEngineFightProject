@@ -15,5 +15,5 @@ QuickMatch::~QuickMatch()
 
 void QuickMatch::selectMode()
 {
-	string arenaSelection = "Choose your Arena";
+	cout << endl << "Choose your Arena" << endl << endl;
 }

@@ -16,5 +16,5 @@ Adventure::~Adventure()
 
 void Adventure::selectMode()
 {
-	string stupidAdventure = "As soon as you steped outside of your house you died of an cardiac arrest. Game over.";
+	cout << endl << "As soon as you stepped outside of your house you died of an cardiac arrest. Game over." << endl << endl;
 }

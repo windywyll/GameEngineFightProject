@@ -28,6 +28,7 @@
     <ClCompile Include="GameMode.cpp" />
     <ClCompile Include="Idle.cpp" />
     <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="Moving.cpp" />
     <ClCompile Include="ObserverDefeat.cpp" />
     <ClCompile Include="Player.cpp" />
