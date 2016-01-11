@@ -1,6 +1,6 @@
 #include "Jump.h"
 #include <Windows.h>
-
+#include "Player.h"
 
 Jump::Jump(std::string pName,
 	float loadingTime,
@@ -15,10 +15,9 @@ Jump::~Jump()
 {
 }
 
-void Jump::execute(Player* p)
+STATE Jump::execute(Player* p)
 {
-	float jumpForce = 5;
-	p->movePosition(Vector3(0, jumpForce,0));
-	Sleep(600);
-	p->movePosition(Vector3(0, -jumpForce, 0));
+	p->movePosition(Vector3(0,5,0));
+	
+	return MOVING;
 }

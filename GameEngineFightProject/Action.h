@@ -2,6 +2,7 @@
  * Project Untitled
  */
 
+#include "ENUMSTATE.h"
 #include <string>
 #ifndef _ACTION_H
 #define _ACTION_H
@@ -23,7 +24,7 @@ public:
 	float Recovery;
 	float stunTime;
 	
-	virtual void execute(Player* p = nullptr) = 0;
+	virtual STATE execute(Player* p = nullptr) = 0;
 };
 
 #endif //_ACTION_H

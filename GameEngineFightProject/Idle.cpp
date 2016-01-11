@@ -13,6 +13,16 @@ Idle::Idle()
 }
 
 
-	 void Idle::changeState()
- {
- }
+void Idle::changeState(STATE pState)
+{
+}
+
+STATE Idle::useAction(Action * act, Player * p)
+{
+	return act->execute(p);;
+}
+
+STATE Idle::isInState()
+{
+	return IDLE;
+}

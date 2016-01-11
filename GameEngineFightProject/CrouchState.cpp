@@ -11,6 +11,11 @@ CrouchState::~CrouchState()
 {
 }
 
-void CrouchState::changeState(PLAYER::STATE pState)
+void CrouchState::changeState(STATE pState)
 {
+}
+
+STATE CrouchState::isInState()
+{
+	return CROUCH;
 }

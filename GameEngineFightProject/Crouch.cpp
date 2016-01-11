@@ -2,8 +2,13 @@
 
 
 
-Crouch::Crouch()
+Crouch::Crouch(std::string pName,
+	float loadingTime,
+	float moveDuration,
+	float Recovery,
+	float stunTime): ActionFinal(pName, loadingTime, moveDuration, Recovery, stunTime)
 {
+
 }
 
 
@@ -11,7 +16,8 @@ Crouch::~Crouch()
 {
 }
 
-void Crouch::execute(Player* p)
+STATE Crouch::execute(Player* p)
 {
-	p->setState(CROUCH);
+	
+	return CROUCH;
 }
