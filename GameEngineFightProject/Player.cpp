@@ -67,8 +67,9 @@ void Player::setState(STATE st)
 void Player::applyDamage(int dmg) {
 	dmg = abs(dmg);
 	bool dodge = (currentState->isInState() == CROUCH);
-	if (dodge && (rand() % 100 + 1 > 60)) dmg = 0;
 	
+	if (dodge && (rand() % 100 + 1 > 60)) dmg = 0;
+	if (currentState->isInState() == BLOCK) dmg = 0;
 	if (dmg >= lifePoints)
 	{
 		lifePoints = 0;

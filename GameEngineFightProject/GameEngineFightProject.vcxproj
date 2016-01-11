@@ -24,6 +24,8 @@
     <ClCompile Include="ActionNext.cpp" />
     <ClCompile Include="Adventure.cpp" />
     <ClCompile Include="Attack.cpp" />
+    <ClCompile Include="Block.cpp" />
+    <ClCompile Include="BlockState.cpp" />
     <ClCompile Include="Crouch.cpp" />
     <ClCompile Include="CrouchState.cpp" />
     <ClCompile Include="Death.cpp" />
@@ -33,6 +35,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Move.cpp" />
     <ClCompile Include="Moving.cpp" />
     <ClCompile Include="ObserverDefeat.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -50,6 +53,8 @@
     <ClInclude Include="ActionNext.h" />
     <ClInclude Include="Adventure.h" />
     <ClInclude Include="Attack.h" />
+    <ClInclude Include="Block.h" />
+    <ClInclude Include="BlockState.h" />
     <ClInclude Include="Crouch.h" />
     <ClInclude Include="crouchstate.h" />
     <ClInclude Include="Death.h" />
@@ -58,6 +63,7 @@
     <ClInclude Include="Idle.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Jump.h" />
+    <ClInclude Include="Move.h" />
     <ClInclude Include="Moving.h" />
     <ClInclude Include="ObserverDefeat.h" />
     <ClInclude Include="Player.h" />

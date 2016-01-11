@@ -20,6 +20,7 @@ public:
 	~Player();
 	std::string name;
 	Vector3 position;
+	int direction;
 	PlayerState* currentState;
 	int  lifePoints;
 	std::vector<Action*> actionList;

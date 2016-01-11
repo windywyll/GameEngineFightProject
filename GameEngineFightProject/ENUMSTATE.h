@@ -10,5 +10,6 @@
 		CROUCH,
 		JUMP,
 		ATTACK,
+		BLOCK,
 
 	};
