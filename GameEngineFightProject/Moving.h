@@ -10,6 +10,9 @@
 
 
 class Moving: public PlayerState {
+public:
+	Moving();
+	void changeState();
 };
 
 #endif //_MOVING_H

@@ -12,6 +12,8 @@ Death::Death()
 {
 }
 
-void Death::changeState()
+void Death::changeState(PLAYERSTATE p)
 {
 }
+
+
