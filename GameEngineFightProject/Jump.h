@@ -5,9 +5,13 @@ class Jump :
 	public ActionFinal
 {
 public:
-	Jump();
+	Jump(std::string pName,
+		float loadingTime,
+		float moveDuration,
+		float Recovery,
+		float stunTime);
 	~Jump();
 
-	void execute();
+	void execute(Player* p);
 };
 

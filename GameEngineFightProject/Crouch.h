@@ -6,5 +6,6 @@ class Crouch :
 public:
 	Crouch();
 	~Crouch();
+	void execute(Player* p);
 };
 

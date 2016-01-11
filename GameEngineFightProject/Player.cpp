@@ -10,16 +10,16 @@
  */
 
 
-Player::Player(int heal)
+Player::Player(int health)
 {
-	lifePoints = heal;
+	lifePoints = health;
 }
 
-Player::Player(int heal, std::vector<Action*> actList)
+Player::Player(int health, std::vector<Action*> actList)
 {
-	lifePoints = heal;
+	lifePoints = health;
 	actionList = actList;
-	currentState = new Idle();
+	currentState->changeState(PLAYER::IDLE);
 }
 
 void Player::registerObserver()
@@ -39,28 +39,31 @@ PlayerState* Player::getCurrentState()
 	return currentState;
 }
 
-void Player::setState(PlayerState* state)
+void Player::setState(std::string)
 {
 	//currentState->changeState(state);
 }
 
-/**
- * @param dmg
- */
+
 void Player::applyDamage(int dmg) {
 	dmg = abs(dmg);
+	bool dodge = currentState == new CrouchState();
+	if (dodge && (rand() % 100 + 1 > 60)) dmg = 0;
+	
 	if (dmg >= lifePoints)
 	{
 		lifePoints = 0;
-		currentState->changeState(DEATH);
+		currentState->changeState(PLAYER::DEATH);
 		//Death
 	}
-	else
+	else if(dmg > 0)
 	{
 		// stuned
-		setState(new Stun());
+		currentState->changeState(PLAYER::STUN);
 		lifePoints -= dmg;
 	}
+	
+	
 }
 
 int Player::getLife()
@@ -68,9 +71,7 @@ int Player::getLife()
 	return lifePoints;
 }
 
-/**
- * @param point
- */
+
 void Player::healing(int point) {
 	// inutile : pas dans le sujet
 }
@@ -81,7 +82,12 @@ void Player::useAction(Action* act)
 	{
 		if (var == act)
 		{
-			var->execute();
+			var->execute(this);
 		}
 	}
+}
+
+void Player::movePosition(Vector3 pos)
+{
+	position += pos;
 }

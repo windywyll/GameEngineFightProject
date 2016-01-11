@@ -6,19 +6,22 @@
 #ifndef _PLAYERSTATE_H
 #define _PLAYERSTATE_H
 
-
-static enum PLAYERSTATE
+namespace PLAYER
 {
-	IDLE,
-	DEATH,
-	STUN,
-	MOVING,
-};
+	enum STATE
+	{
+		IDLE,
+		DEATH,
+		STUN,
+		MOVING,
+		CROUCH
+	};
+}
 
 class PlayerState {
 public: 
 	
-	virtual void changeState()= 0;
+	virtual void changeState(PLAYER::STATE pState)= 0;
 };
 
 #endif //_PLAYERSTATE_H

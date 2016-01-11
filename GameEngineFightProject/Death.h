@@ -13,7 +13,7 @@ class Death: public PlayerState {
 public:
 	Death();
 
-	void changeState(PLAYERSTATE p);
+	void changeState(PLAYER::STATE p);
 };
 
 #endif //_DEATH_H
