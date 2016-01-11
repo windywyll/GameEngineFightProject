@@ -22,25 +22,41 @@
     <ClCompile Include="Action.cpp" />
     <ClCompile Include="ActionFinal.cpp" />
     <ClCompile Include="ActionNext.cpp" />
+    <ClCompile Include="Adventure.cpp" />
     <ClCompile Include="Death.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="GameMode.cpp" />
     <ClCompile Include="Idle.cpp" />
+    <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Moving.cpp" />
+    <ClCompile Include="ObserverDefeat.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerState.cpp" />
+    <ClCompile Include="QuickMatch.cpp" />
+    <ClCompile Include="Round.cpp" />
+    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Stun.cpp" />
+    <ClCompile Include="Tournament.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Action.h" />
     <ClInclude Include="ActionFinal.h" />
     <ClInclude Include="ActionNext.h" />
+    <ClInclude Include="Adventure.h" />
     <ClInclude Include="Death.h" />
+    <ClInclude Include="GameMode.h" />
     <ClInclude Include="Idle.h" />
+    <ClInclude Include="InputManager.h" />
     <ClInclude Include="Moving.h" />
+    <ClInclude Include="ObserverDefeat.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerState.h" />
+    <ClInclude Include="QuickMatch.h" />
+    <ClInclude Include="Round.h" />
+    <ClInclude Include="Scene.h" />
     <ClInclude Include="Stun.h" />
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Tournament.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{384E83CE-CCC9-4C5F-B4DB-E6129F9A1B70}</ProjectGuid>
