@@ -120,7 +120,7 @@ void GameManager::quickMatchSelected()
 void GameManager::arenaChoice()
 {
 	bool arenaChoice = false;
-	while (arenaChoice != true)
+	while (!arenaChoice)
 	{
 		((QuickMatch*)listGameMode[modeSelected])->displayArena();
 		arenaChoice = ((QuickMatch*)listGameMode[modeSelected])->selectArena(atoi(inputHandler->handleInput().c_str()) - 1);
@@ -139,8 +139,34 @@ void GameManager::arenaChoice()
 
 void GameManager::optionChoice()
 {
-	while (1)
+	bool optionsConfirmed = false;
+	while (!optionsConfirmed)
 	{
+		((QuickMatch*)listGameMode[modeSelected])->displayOptions();
+		((QuickMatch*)listGameMode[modeSelected])->selectOptions(atoi(inputHandler->handleInput().c_str()) - 1);
 
+		if (((QuickMatch*)listGameMode[modeSelected])->getOptionConfirmed() || ((QuickMatch*)listGameMode[modeSelected])->getOptionsCancel())
+		{
+			optionsConfirmed = true;
+		}
+		else
+		{
+			cout << endl << "Enter Your Value: " << endl;
+			((QuickMatch*)listGameMode[modeSelected])->setSelectedOption(((QuickMatch*)listGameMode[modeSelected])->getOptionSelected(), atoi(inputHandler->handleInput().c_str()));
+		}
+	}
+
+	if (((QuickMatch*)listGameMode[modeSelected])->getOptionsCancel())
+	{
+		((QuickMatch*)listGameMode[modeSelected])->resetOptions();
+		arenaChoice();
+	}
+
+	if(((QuickMatch*)listGameMode[modeSelected])->getOptionConfirmed())
+	{
+		cout << endl << "The Match Begins" << endl << endl;
+		modeSelected = ModeRange::None;
+		run = false;
+		system("PAUSE");
 	}
 }

@@ -17,11 +17,21 @@ QuickMatch::QuickMatch()
 
 QuickMatch::~QuickMatch()
 {
+	while (listArena.size() > 0)
+	{
+		delete listArena.back();
+		listArena.pop_back();
+	}
 }
 
 void QuickMatch::reset()
 {
 	arenaSelected = arenaRange::none;
+}
+
+void QuickMatch::resetOptions()
+{
+	listArena[arenaSelected]->reset();
 }
 
 void QuickMatch::selectMode()
@@ -32,6 +42,21 @@ void QuickMatch::selectMode()
 int QuickMatch::getSelectedArena()
 {
 	return arenaSelected;
+}
+
+int QuickMatch::getOptionSelected()
+{
+	return listArena[arenaSelected]->getOptionSelected();
+}
+
+bool QuickMatch::getOptionConfirmed()
+{
+	return listArena[arenaSelected]->getOptionConfirmed();
+}
+
+bool QuickMatch::getOptionsCancel()
+{
+	return listArena[arenaSelected]->getOptionCancel();
 }
 
 bool QuickMatch::selectArena(int selectNum)
@@ -58,6 +83,16 @@ bool QuickMatch::selectArena(int selectNum)
 	return goodSelection;
 }
 
+void QuickMatch::selectOptions(int selectNum)
+{
+	return listArena[arenaSelected]->selectOptions(selectNum);
+}
+
+void QuickMatch::setSelectedOption(int option, int value)
+{
+	listArena[arenaSelected]->setSelectedOption(option, value);
+}
+
 void QuickMatch::displayArena()
 {
 	for (unsigned int i = 0; i < listArena.size(); ++i)
@@ -65,7 +100,12 @@ void QuickMatch::displayArena()
 		cout << "- " << (i + 1) << " : " << listArena[i]->getName() << endl;
 	}
 
-	cout << "- 9 : Exit Quick Match Mode" << endl;
+	cout << "- 9 : Return to Game Mode Seection" << endl;
 
 	cout << endl;
+}
+
+void QuickMatch::displayOptions()
+{
+	listArena[arenaSelected]->displayOption();
 }
