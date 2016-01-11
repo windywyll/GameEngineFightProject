@@ -11,6 +11,7 @@ Crouch::~Crouch()
 {
 }
 
-void Crouch::execute()
+void Crouch::execute(Player* p)
 {
+	p->setState(CROUCH);
 }

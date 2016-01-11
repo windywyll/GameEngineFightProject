@@ -10,7 +10,14 @@
 
 
 class ActionFinal: public Action {
-	void execute();
+public:
+
+	ActionFinal(std::string pName,
+		float loadingTime,
+		float moveDuration,
+		float Recovery,
+		float stunTime);
+	virtual void execute(Player* p)=0;
 };
 
 #endif //_ACTIONFINAL_H

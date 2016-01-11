@@ -1,13 +1,16 @@
 /**
  * Project Untitled
  */
+
 #include <string>
 #ifndef _ACTION_H
 #define _ACTION_H
+class Player;
 
 
 class Action{
 public: 
+	
 	Action(std::string pName, 
 	float loadingTime,
 	float moveDuration,
@@ -20,7 +23,7 @@ public:
 	float Recovery;
 	float stunTime;
 	
-	virtual void execute() = 0;
+	virtual void execute(Player* p = nullptr) = 0;
 };
 
 #endif //_ACTION_H

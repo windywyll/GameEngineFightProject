@@ -13,12 +13,14 @@ static enum PLAYERSTATE
 	DEATH,
 	STUN,
 	MOVING,
+	CROUCH,
+
 };
 
 class PlayerState {
 public: 
 	
-	virtual void changeState()= 0;
+	virtual void changeState(PLAYERSTATE pState)= 0;
 };
 
 #endif //_PLAYERSTATE_H
