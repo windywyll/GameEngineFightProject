@@ -1,6 +1,6 @@
 #include "InputManager.h"
 
-
+using namespace std;
 
 InputManager::InputManager()
 {
@@ -13,7 +13,9 @@ InputManager::~InputManager()
 
 }
 
-char InputManager::handleInput()
+string InputManager::handleInput()
 {
-	return 'c';
+	string toReturn;
+	cin >> toReturn;
+	return toReturn;
 }

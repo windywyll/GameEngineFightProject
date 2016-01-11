@@ -1,6 +1,10 @@
 #ifndef INPUTMANAGER
 #define INPUTMANAGER
 
+#include <string>;
+#include <iostream>
+#include <stdio.h>
+
 class InputManager
 {
 	public:
@@ -11,7 +15,7 @@ class InputManager
 			return &instance;
 		}
 
-		char handleInput();
+		std::string handleInput();
 
 	private:
 		InputManager();
