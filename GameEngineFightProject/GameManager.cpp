@@ -68,7 +68,7 @@ void GameManager::startGame()
 
 void GameManager::gameModeChoice()
 {
-	cout << "Choose your Game mode:" << endl << endl;
+	cout << endl << "Choose your Game mode:" << endl << endl;
 	for (unsigned int i = 0; i < listGameMode.size(); ++i)
 	{
 		cout << "- " << (i+1) << " : " << listGameMode[i]->getName() << endl;
@@ -131,8 +131,10 @@ void GameManager::arenaChoice()
 		((QuickMatch*)listGameMode[modeSelected])->reset();
 		modeSelected = ModeRange::None;
 	}
-
-	optionChoice();
+	else
+	{
+		optionChoice();
+	}
 }
 
 void GameManager::optionChoice()

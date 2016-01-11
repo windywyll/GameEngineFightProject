@@ -65,7 +65,7 @@ void QuickMatch::displayArena()
 		cout << "- " << (i + 1) << " : " << listArena[i]->getName() << endl;
 	}
 
-	cout << "- 9 : Exit Game" << endl;
+	cout << "- 9 : Exit Quick Match Mode" << endl;
 
 	cout << endl;
 }
