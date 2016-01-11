@@ -22,6 +22,18 @@ Player::Player(int heal, std::vector<Action*> actList)
 	currentState = new Idle();
 }
 
+void Player::registerObserver()
+{
+}
+
+void Player::unregisterObserver()
+{
+}
+
+void Player::notifyObserver()
+{
+}
+
 PlayerState* Player::getCurrentState()
 {
 	return currentState;
@@ -29,7 +41,7 @@ PlayerState* Player::getCurrentState()
 
 void Player::setState(PlayerState* state)
 {
-	currentState = state;
+	//currentState->changeState(state);
 }
 
 /**
@@ -40,11 +52,13 @@ void Player::applyDamage(int dmg) {
 	if (dmg >= lifePoints)
 	{
 		lifePoints = 0;
-		setState(new Death());
+		currentState->changeState(DEATH);
 		//Death
 	}
 	else
 	{
+		// stuned
+		setState(new Stun());
 		lifePoints -= dmg;
 	}
 }
@@ -61,7 +75,7 @@ void Player::healing(int point) {
 	// inutile : pas dans le sujet
 }
 
-void Player::attack(Action* act)
+void Player::useAction(Action* act)
 {
 	for each (Action* var in actionList)
 	{

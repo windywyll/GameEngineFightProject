@@ -7,3 +7,11 @@
 /**
  * Moving implementation
  */
+
+Moving::Moving()
+{
+}
+
+void Moving::changeState()
+{
+}
