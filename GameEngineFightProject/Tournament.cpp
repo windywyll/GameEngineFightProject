@@ -5,7 +5,7 @@ using namespace std;
 Tournament::Tournament()
 {
 	name = "tournament";
-	listArena = vector<Scene>();
+	listArena = vector<Scene*>();
 }
 
 

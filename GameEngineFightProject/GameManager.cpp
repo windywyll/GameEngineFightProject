@@ -94,6 +94,7 @@ void GameManager::gameModeChoice()
 			run = false;
 			break;
 		default:
+			cout << endl << "error bad selection" << endl << endl;
 			break;
 	}
 }
@@ -117,6 +118,24 @@ void GameManager::quickMatchSelected()
 }
 
 void GameManager::arenaChoice()
+{
+	bool arenaChoice = false;
+	while (arenaChoice != true)
+	{
+		((QuickMatch*)listGameMode[modeSelected])->displayArena();
+		arenaChoice = ((QuickMatch*)listGameMode[modeSelected])->selectArena(atoi(inputHandler->handleInput().c_str()) - 1);
+	}
+
+	if (((QuickMatch*)listGameMode[modeSelected])->getSelectedArena() == 8)
+	{
+		((QuickMatch*)listGameMode[modeSelected])->reset();
+		modeSelected = ModeRange::None;
+	}
+
+	optionChoice();
+}
+
+void GameManager::optionChoice()
 {
 	while (1)
 	{

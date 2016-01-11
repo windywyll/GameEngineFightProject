@@ -5,7 +5,7 @@ using namespace std;
 Adventure::Adventure()
 {
 	name = "adventure";
-	listArena = vector<Scene>();
+	listArena = vector<Scene*>();
 }
 
 

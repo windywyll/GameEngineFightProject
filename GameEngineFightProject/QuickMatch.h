@@ -9,5 +9,13 @@ class QuickMatch : public GameMode
 		QuickMatch();
 		~QuickMatch();
 		void selectMode();
+		void displayArena();
+		void reset();
+		bool selectArena(int selectNum);
+		int getSelectedArena();
+
+	private:
+		enum arenaRange{none = -1, quarry = 0, wasteland = 1, exit = 8};
+		arenaRange arenaSelected;
 };
 #endif

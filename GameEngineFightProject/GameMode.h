@@ -17,6 +17,6 @@ class GameMode
 
 	protected:
 		std::string name;
-		std::vector<Scene> listArena;
+		std::vector<Scene*> listArena;
 };
 #endif

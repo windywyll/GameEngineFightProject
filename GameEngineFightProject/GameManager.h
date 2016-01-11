@@ -30,6 +30,7 @@ class GameManager : public ObserverDefeat
 		void tournamentSelected();
 		void quickMatchSelected();
 		void arenaChoice();
+		void optionChoice();
 		void fighting();
 		void notify();
 	
