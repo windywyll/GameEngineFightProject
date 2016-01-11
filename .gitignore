@@ -27,3 +27,9 @@
 *.out
 *.app
 /*.opensdf
+/Debug/*.ilk
+/Debug/*.pdb
+/GameEngineFightProject/Debug/GameEngi.384E83CE.tlog/*.tlog
+/GameEngineFightProject/Debug/GameEngi.384E83CE.tlog/*
+/GameEngineFightProject/Debug/*.idb
+/GameEngineFightProject/Debug/*.pdb
