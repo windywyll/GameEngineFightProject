@@ -19,10 +19,28 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameManager.h" />
+    <ClCompile Include="Action.cpp" />
+    <ClCompile Include="ActionFinal.cpp" />
+    <ClCompile Include="ActionNext.cpp" />
+    <ClCompile Include="Death.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Idle.cpp" />
+    <ClCompile Include="Moving.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerState.cpp" />
+    <ClCompile Include="Stun.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="GameManager.cpp" />
+    <ClInclude Include="Action.h" />
+    <ClInclude Include="ActionFinal.h" />
+    <ClInclude Include="ActionNext.h" />
+    <ClInclude Include="Death.h" />
+    <ClInclude Include="Idle.h" />
+    <ClInclude Include="Moving.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerState.h" />
+    <ClInclude Include="Stun.h" />
+    <ClInclude Include="GameManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{384E83CE-CCC9-4C5F-B4DB-E6129F9A1B70}</ProjectGuid>
