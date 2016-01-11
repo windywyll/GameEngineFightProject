@@ -14,6 +14,7 @@
 #include "Tournament.h"
 #include "Player.h"
 
+
 class GameManager : public ObserverDefeat
 {
 	public:

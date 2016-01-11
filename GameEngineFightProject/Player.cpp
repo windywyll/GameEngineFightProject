@@ -19,7 +19,7 @@ Player::Player(int health, std::vector<Action*> actList)
 {
 	lifePoints = health;
 	actionList = actList;
-	currentState->changeState(IDLE);
+	currentState->changeState(PLAYER::IDLE);
 }
 
 void Player::registerObserver()
@@ -47,22 +47,22 @@ void Player::setState(std::string)
 
 void Player::applyDamage(int dmg) {
 	dmg = abs(dmg);
-	bool dodge = currentState;
-	if (dodge)
+	bool dodge = currentState == new CrouchState();
+	if (dodge && (rand() % 100 + 1 > 60)) dmg = 0;
+	
+	if (dmg >= lifePoints)
 	{
-		if (dmg >= lifePoints)
-		{
-			lifePoints = 0;
-			currentState->changeState(DEATH);
-			//Death
-		}
-		else
-		{
-			// stuned
-			currentState->changeState(STUN);
-			lifePoints -= dmg;
-		}
+		lifePoints = 0;
+		currentState->changeState(PLAYER::DEATH);
+		//Death
 	}
+	else if(dmg > 0)
+	{
+		// stuned
+		currentState->changeState(PLAYER::STUN);
+		lifePoints -= dmg;
+	}
+	
 	
 }
 

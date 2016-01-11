@@ -6,6 +6,6 @@ class CrouchState :
 public:
 	CrouchState();
 	~CrouchState();
-	void changeState(PLAYERSTATE pState);
+	void changeState(PLAYER::STATE pState);
 };
 

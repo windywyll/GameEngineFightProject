@@ -11,6 +11,6 @@ CrouchState::~CrouchState()
 {
 }
 
-void CrouchState::changeState(PLAYERSTATE pState)
+void CrouchState::changeState(PLAYER::STATE pState)
 {
 }

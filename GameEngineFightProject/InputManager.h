@@ -1,7 +1,7 @@
 #ifndef INPUTMANAGER
 #define INPUTMANAGER
 
-#include <string>;
+#include <string>
 #include <iostream>
 #include <stdio.h>
 

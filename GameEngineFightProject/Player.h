@@ -8,6 +8,7 @@
 #include "Stun.h"
 #include "Death.h"
 #include "PlayerState.h"
+#include "CrouchState.h"
 #include "Action.h"
 #ifndef _PLAYER_H
 #define _PLAYER_H
