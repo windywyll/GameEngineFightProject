@@ -26,3 +26,5 @@
 *.exe
 *.out
 *.app
+/GameEngineFightProject/*.vcxproj
+/GameEngineFightProject/GameEngineFightProject.vcxproj.filters
