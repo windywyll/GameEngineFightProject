@@ -21,10 +21,18 @@ Player::Player(int health, std::string pName, int nPl)
 	maxlifePoints = health;
 	currentState = new Idle();
 	float a = 0;
+	Attack* att = new Attack(50, "punch", a, a, a, 30);
+	ActionNext* act = new ActionNext("SUPER PUNCH !!!!");
+	act->pushBackAction(att);
+	act->pushBackAction(att);
+	comboList.insert(std::pair<int, ActionNext*>(1, act));
 
-
+	ActionNext* act2 = new ActionNext("Flying Punch");
+	act2->pushBackAction(new Jump("Jump", a, a, a, a));
+	act2->pushBackAction(new Attack(50, "coup de pied", a, a, a, 30));
+	comboList.insert(std::pair<int, ActionNext*>(2, act2));
 	
-	actionList.insert(std::pair<char, Attack*>('a', new Attack(50, "coup de pied", a, a, a, 30)));
+	actionList.insert(std::pair<char, Attack*>('a', att));
 	actionList.insert(std::pair<char, Block*>('e',new Block("block", a, a, a, a)));
 	actionList.insert(std::pair<char, Crouch*>('s', new Crouch("Crouch", a, a, a, a)));
 	actionList.insert(std::pair<char, Jump*>('z', new Jump("Jump", a, a, a, a)));
@@ -253,8 +261,8 @@ void Player::healing(int point) {
 
 void Player::useAction(Action* act)
 {
-	currentCombo[currentCombo.size()] = act;
-	if (CheckCombo() || Recovery == 0)
+	currentCombo.push_back(act);
+	if (isInCombo() || Recovery == 0)
 	{
 		setState(currentState->useAction(act, this));
 		Recovery = act->Recovery;
@@ -262,7 +270,9 @@ void Player::useAction(Action* act)
 	
 }
 
-bool Player::CheckCombo()
+
+
+bool Player::isInCombo()
 {
 	
 	bool inCombo = false;
@@ -284,6 +294,32 @@ bool Player::CheckCombo()
 		inCombo = true;
 
 	return inCombo;
+}
+
+ActionNext * Player::CheckCurrentCombo()
+{
+	for (std::map<int, ActionNext*>::iterator it = comboList.begin(); it != comboList.end(); ++it)
+	{
+		if (it->second->nextAction.size() != currentCombo.size())
+			break;
+		std::vector<Action*>::iterator iterator = currentCombo.begin();
+		for (std::vector<Action*>::iterator it2 = it->second->nextAction.begin(); it2 != it->second->nextAction.end(); ++it2)
+		{
+			if (*iterator != *it2)
+			{
+				break;
+			}
+
+			if (it2 == (it->second->nextAction.end() - 1))
+			{
+
+				return it->second;
+			}
+			iterator++;
+		}
+	}
+	
+	return nullptr;
 }
 
 void Player::movePosition(Vector3 pos)

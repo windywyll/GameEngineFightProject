@@ -70,4 +70,15 @@ ActionNext::ActionNext(std::string pName) :Action(pName)
 
  }
 
+ void ActionNext::pushBackAction(Action * act)
+ {
+	 nextAction.push_back(act);
+ }
+
+
+ STATE ActionNext::execute(Player * p)
+ {
+	 return IDLE;
+ }
+
  

@@ -57,10 +57,11 @@ public:
 	
 	// public pour test seulement
 	void useAction(Action* act);
-	bool CheckCombo();
+	bool isInCombo();
+	ActionNext* CheckCurrentCombo();
 	void setState(STATE st= IDLE, float duration = -1);
 
-private:
+//private:
 	float Recovery;
 	std::string name;
 	Vector3 position;
@@ -70,7 +71,7 @@ private:
 	int  lifePoints;
 	int maxlifePoints;
 	std::vector<ObserverDefeat*> listObserver;
-	std::map<int, Action*> currentCombo;
+	std::vector<Action*> currentCombo;
 	std::map<int, ActionNext*> comboList;
 	std::map<char, Action*> actionList;
 	float distanceBetweenPlayer;

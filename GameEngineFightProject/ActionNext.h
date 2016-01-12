@@ -25,7 +25,8 @@ public:
 		float moveDuration,
 		float Recovery,
 		float stunTime);
-	virtual STATE execute(Player* p = nullptr)=0;
+	void pushBackAction(Action* act);
+	virtual STATE execute(Player* p = nullptr);
 };
 
 #endif //_ACTIONNEXT_H
