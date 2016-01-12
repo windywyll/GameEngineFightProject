@@ -355,6 +355,10 @@ void GameManager::fighting()
 				cout << endl;
 				cout << listPlayer[i]->getName() << " - " << listPlayer[i]->getLife() << "HP - enter an action : ";
 				listPlayer[i]->InputHandler(inputHandler->handleInputChar());
+				if (listPlayer[i]->CheckCurrentCombo() != nullptr)
+				{
+					cout << "COMBO - " << listPlayer[i]->CheckCurrentCombo()->name << endl;
+				}
 			}
 
 			listPlayer[i]->UpdatePlayer();

@@ -111,7 +111,12 @@ void Player::unregisterObserver(ObserverDefeat* obs)
 
 void Player::InputHandler(char in)
 {
-	useAction(actionList.find(in)->second);
+	for (std::map<char, Action*>::iterator it = actionList.begin(); it != actionList.end(); ++it)
+	{
+		if(it->first == in)
+			useAction(it->second);
+	}
+	
 }
 
 void Player::UpdatePlayer()
@@ -136,7 +141,6 @@ void Player::UpdatePlayer()
 	case JUMP:
 		if (currentState->duration <= 0)isJumping(false);
 		UpdateTimer();
-		
 		break;
 	case ATTACK:
 		break;

@@ -28,7 +28,7 @@ void mainJord()
 
 int main()
 {
-	mainWill();
+	mainJord();
 	
 	return 0;
 }
