@@ -12,6 +12,7 @@
 class Moving: public PlayerState {
 public:
 	Moving();
+	float duration;
 	STATE useAction(Action * act, Player * p);
 	STATE isInState();
 };

@@ -1,7 +1,7 @@
 #include "Attack.h"
 #include <math.h>
 #include "Player.h"
-
+#include "GameManager.h"
 Attack::Attack(int dmg, 
 	std::string pName,
 	float loadingTime,
@@ -21,12 +21,16 @@ STATE Attack::execute(Player* p)
 {
 	if (p != nullptr)
 	{
-	
+		
 		float distance = p->getDistanceBetweenPlayer();
 
 		bool isSuccessful = (rand() % 100 + 1) > distance;
+	
+		if (isSuccessful)
+		{
+			// notify apply attack dmg
+			//GameManager::getInstance()->sendDamage(p , dmg, this->stunTime);
+		}
 	}
-	//if (isSuccessful); // notify apply attack dmg
-
 	return ATTACK;
 }

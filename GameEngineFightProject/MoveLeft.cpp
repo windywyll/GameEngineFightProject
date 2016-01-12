@@ -13,6 +13,6 @@ MoveLeft::~MoveLeft()
 STATE MoveLeft::execute(Player * p)
 {
 	if(p != nullptr)
-	p->movePosition(Vector3(-1*p->force, 0, 0));
+	p->movePosition(Vector3(-1*p->getForce(), 0, 0));
 	return MOVING;
 }

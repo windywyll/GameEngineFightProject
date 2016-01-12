@@ -10,6 +10,7 @@
 
 Idle::Idle()
 {
+	duration = -1;
 }
 
 

@@ -6,6 +6,7 @@ class AttackState :
 public:
 	AttackState();
 	~AttackState();
+	float duration;
 	STATE useAction(Action * act, Player * p);
 	STATE isInState();
 };

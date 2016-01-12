@@ -10,7 +10,7 @@
 
 class PlayerState {
 public: 
-	
+	float duration = -1;
 	virtual STATE useAction(Action* act, Player * p = nullptr) = 0;
 	virtual STATE isInState() = 0;
 };

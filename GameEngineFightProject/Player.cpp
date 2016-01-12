@@ -19,14 +19,14 @@ Player::Player(int health, std::string pName)
 	
 }
 
-Player::Player(int health, std::string pName, std::vector<Action*> actList)
+/*Player::Player(int health, std::string pName, std::vector<Action*> actList)
 {
 	force = 5;
 	lifePoints = health;
 	name = pName;
 	actionList = actList;
 	currentState = new Idle();
-}
+}*/
 
 Player::~Player()
 {
@@ -55,24 +55,58 @@ void Player::notifyObserver()
 {
 }
 
+void Player::UpdatePlayer()
+{
+	switch (currentState->isInState())
+	{
+	case IDLE:
+		break;
+	case DEATH:
+		break;
+	case STUN:
+		if (currentState->duration <= 0){
+			setState();
+		}else{
+			currentState->duration--;
+		}break;
+	case MOVING:
+		break;
+	case CROUCH:
+		if (currentState->duration <= 0){
+			setState();
+		}else{
+			currentState->duration--;
+		}break;
+	case JUMP:
+		break;
+	case ATTACK:
+		break;
+	case BLOCK:
+		break;
+	default:
+		break;
+	}
+}
+
 PlayerState* Player::getCurrentState()
 {
 	return currentState;
 }
 
-void Player::setState(STATE st = IDLE)
+void Player::setState(STATE st, float duration)
 {
+	delete currentState;
 	switch (st)
 	{
 	case IDLE:currentState = new Idle();
 		break;
 	case DEATH:currentState = new Death();
 		break;
-	case STUN:currentState = new Stun();
+	case STUN:currentState = new Stun(duration);
 		break;
 	case MOVING:currentState = new Moving();
 		break;
-	case CROUCH:currentState = new CrouchState();
+	case CROUCH:currentState = new CrouchState(duration);
 		break;
 	case JUMP:currentState = new Moving();
 		break;
@@ -87,7 +121,7 @@ void Player::setState(STATE st = IDLE)
 }
 
 
-void Player::applyDamage(int dmg) {
+void Player::applyDamage(int dmg, float timeStun) {
 	dmg = abs(dmg);
 	bool dodge = (currentState->isInState() == CROUCH);
 	
@@ -102,7 +136,7 @@ void Player::applyDamage(int dmg) {
 	else if(dmg > 0)
 	{
 		// stuned
-		setState(STUN);
+		setState(STUN, timeStun);
 		lifePoints -= dmg;
 	}	
 }
@@ -110,6 +144,27 @@ void Player::applyDamage(int dmg) {
 int Player::getLife()
 {
 	return lifePoints;
+}
+
+Vector3 Player::getPosition()
+{
+	return position;
+}
+
+int Player::getForce()
+{
+	return force;
+}
+
+std::string Player::getName()
+{
+	return name;
+}
+
+STATE Player::getState()
+{
+
+	return currentState->isInState();
 }
 
 void Player::healing(int point) {

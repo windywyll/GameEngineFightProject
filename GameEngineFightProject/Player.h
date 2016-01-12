@@ -1,6 +1,6 @@
-/**
- * Project Untitled
- */
+#ifndef _PLAYER_H
+#define _PLAYER_H
+
 #include "Vector3.h"
 #include <vector>
 #include "Idle.h"
@@ -12,14 +12,36 @@
 #include "PlayerState.h"
 #include "CrouchState.h"
 #include "Action.h"
-#ifndef _PLAYER_H
-#define _PLAYER_H
 
 class Player {
 public: 
 	Player(int health, std::string pName);
-	Player(int health, std::string pName, std::vector<Action*> actList);
+	//Player(int health, std::string pName, std::vector<Action*> actList);
 	~Player();
+	
+	void setDistanceBetweenPlayer(float dist);
+	void applyDamage(int dmg, float timeStun = 0);
+	void healing(int point);
+	void movePosition(Vector3 pos);
+	
+	float getDistanceBetweenPlayer();
+	STATE getState();
+	PlayerState* getCurrentState();
+	int getLife();
+	Vector3 getPosition();
+	int getForce();
+	std::string getName();
+
+	void registerObserver();
+	void unregisterObserver();
+	void notifyObserver();
+	void UpdatePlayer();
+	
+	// public pour test seulement
+	void useAction(Action* act); 
+	void setState(STATE st= IDLE, float duration = -1);
+
+private:
 	std::string name;
 	Vector3 position;
 	PlayerState* currentState;
@@ -28,18 +50,6 @@ public:
 	std::vector<Action*> actionList;
 	float distanceBetweenPlayer;
 	
-	float getDistanceBetweenPlayer();
-	void setDistanceBetweenPlayer(float dist);
-	void registerObserver();
-	void unregisterObserver();
-	void notifyObserver();
-	PlayerState* getCurrentState();
-	void setState(STATE state);
-	void applyDamage(int dmg);
-	int getLife();
-	void healing(int point);
-	void useAction(Action* act);
-	void movePosition(Vector3 pos);
 };
 
 #endif //_PLAYER_H

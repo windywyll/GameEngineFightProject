@@ -4,6 +4,7 @@
 
 BlockState::BlockState()
 {
+	duration = -1;
 }
 
 
@@ -14,7 +15,7 @@ BlockState::~BlockState()
 STATE BlockState::useAction(Action * act, Player * p)
 {
 	bool Stroke = rand() * 100 + 1 >= 99;
-	if (Stroke) p->applyDamage(p->lifePoints);
+	if (Stroke) p->applyDamage(p->getLife());
 
 	return BLOCK;
 }

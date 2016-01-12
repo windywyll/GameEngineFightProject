@@ -4,6 +4,7 @@
 
 AttackState::AttackState()
 {
+	duration = -1;
 }
 
 

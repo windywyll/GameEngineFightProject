@@ -19,6 +19,6 @@ Move::~Move()
 STATE Move::execute(Player * p)
 {
 	if (p != nullptr)
-	p->movePosition(Vector3(p->force ,0,0));
+	p->movePosition(Vector3(p->getForce() ,0,0));
 	return MOVING;
 }

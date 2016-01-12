@@ -11,10 +11,14 @@
 
 
 
+Stun::Stun(float time)
+{
+	duration = time;
+}
 
 STATE Stun::useAction(Action * act, Player * p)
 {
-	return STATE();
+	return STUN;
 }
 
 STATE Stun::isInState()

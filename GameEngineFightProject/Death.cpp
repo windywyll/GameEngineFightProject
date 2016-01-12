@@ -10,6 +10,7 @@
 
 Death::Death()
 {
+	duration = -1;
 }
 
 

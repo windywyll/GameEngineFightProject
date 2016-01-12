@@ -10,7 +10,10 @@
 
 
 class Stun: public PlayerState {
-	float timeStuned;
+
+public:
+	float duration;
+	Stun(float time = 0);
 	STATE useAction(Action* act, Player* p = nullptr);
 	STATE isInState();
 };

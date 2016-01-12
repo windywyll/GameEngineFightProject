@@ -10,6 +10,7 @@
 
 Moving::Moving()
 {
+	duration = -1;
 }
 
 STATE Moving::useAction(Action* act, Player* p)
