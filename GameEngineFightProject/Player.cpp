@@ -51,9 +51,6 @@ Player::~Player()
 	actionList.clear();
 	clearCurrentCombo();
 	delete currentState;
-	delete &actionList;
-	delete &currentCombo;
-	delete &comboList;
 }
 
 void Player::clearCurrentCombo()
