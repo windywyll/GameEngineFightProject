@@ -21,6 +21,8 @@ Player::Player(int health, std::string pName, int nPl)
 	maxlifePoints = health;
 	currentState = new Idle();
 	float a = 0;
+
+
 	
 	actionList.insert(std::pair<char, Attack*>('a', new Attack(50, "coup de pied", a, a, a, 30)));
 	actionList.insert(std::pair<char, Block*>('e',new Block("block", a, a, a, a)));
