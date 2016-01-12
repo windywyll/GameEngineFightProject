@@ -33,6 +33,24 @@ Player::Player(int health, std::string pName, int nPl)
 	act2->pushBackAction(jump);
 	act2->pushBackAction(attack);
 	comboList.insert(std::pair<int, ActionNext*>(2, act2));
+
+	ActionNext* act3 = new ActionNext("Sleeping KICKKKK");
+	act3->pushBackAction(crouch);
+	act3->pushBackAction(attack);
+	comboList.insert(std::pair<int, ActionNext*>(3, act3));
+
+	ActionNext* act4 = new ActionNext("WHAT THE FUCK ?");
+	act4->pushBackAction(jump);
+	act4->pushBackAction(crouch);
+	act4->pushBackAction(moveLeft);
+	act4->pushBackAction(attack);
+	comboList.insert(std::pair<int, ActionNext*>(4, act4));
+
+	ActionNext* act5 = new ActionNext("HYPER MEGA SUPERRRRR KICK");
+	act5->pushBackAction(moveRight);
+	act5->pushBackAction(jump);
+	act5->pushBackAction(attack);
+	comboList.insert(std::pair<int, ActionNext*>(5, act5));
 	
 	actionList.insert(std::pair<char, Attack*>('a', attack));
 	actionList.insert(std::pair<char, Block*>('e', block));
