@@ -12,6 +12,9 @@ GameManager::GameManager()
 
 	returnToArenaSelection = false;
 	returnToOptionSelection = false;
+	p1Death = false;
+	p2Death = false;
+
 	modeSelected = ModeRange::None;
 
 	inputHandler = InputManager::getInstance();
@@ -61,13 +64,13 @@ void GameManager::notify(Message msg)
 			if (listPlayer[0]->getLife() > listPlayer[1]->getLife())
 			{
 				++numVictoryP1;
-				//cout << listPlayer[0]->getName() << " Wins!" << endl;
+				cout << listPlayer[0]->getName() << " Wins!" << endl;
 			}
 
 			if (listPlayer[0]->getLife() < listPlayer[1]->getLife())
 			{
 				++numVictoryP2;
-				//cout << listPlayer[0]->getName() << " Wins!" << endl;
+				cout << listPlayer[0]->getName() << " Wins!" << endl;
 			}
 
 			if (listPlayer[0]->getLife() == listPlayer[1]->getLife())
@@ -91,6 +94,11 @@ void GameManager::notify(Message msg)
 				break;
 		}
 		case typeMSG::death:
+			if (msg.getSource == typeSource::p1)
+				p1Death = true;
+
+			if (msg.getSource == typeSource::p2)
+				p2Death = true;
 			break;
 		default:
 			break;
@@ -104,16 +112,14 @@ void GameManager::notify(Message msg)
 		{
 			fightRun = false;
 			cout << endl << endl << "Match Ended" << endl;
-			//cout << listPlayer[0]->getName() << " Wins!" << endl << endl;
-			cout << "p1 wins" << endl;
+			cout << listPlayer[0]->getName() << " Wins!" << endl << endl;
 		}
 
 		if (numVictoryP2 == winnningRounds && numVictoryP2 != numVictoryP1)
 		{
 			fightRun = false;
 			cout << endl << endl << "Match Ended" << endl;
-			//cout << listPlayer[0]->getName() << " Wins!" << endl << endl;
-			cout << "p2 wins" << endl;
+			cout << listPlayer[0]->getName() << " Wins!" << endl << endl;
 		}
 
 		if (numVictoryP1 == winnningRounds && numVictoryP2 == winnningRounds)
@@ -310,6 +316,8 @@ void GameManager::fighting()
 	fightRun = true;
 	roundEnded = true;
 	int frame = 0;
+	int frameConfirmDeath = 0;
+	int frameConfirmationDelay = 5;
 	numVictoryP1 = 0;
 	numVictoryP2 = 0;
 

@@ -39,7 +39,7 @@ class GameManager : public ObserverDefeat
 		~GameManager();
 		enum ModeRange { None = -1, partieRapide = 2, Tournoi = 1, Aventure = 0, Exit = 8 };
 		ModeRange modeSelected;
-		bool run, fightRun, roundEnded, resetMatch, returnToArenaSelection, returnToOptionSelection;
+		bool run, fightRun, roundEnded, resetMatch, returnToArenaSelection, returnToOptionSelection ,p1Death, p2Death;
 		int fps = 30, numVictoryP1, numVictoryP2;
 		InputManager* inputHandler;
 		std::vector<GameMode*> listGameMode;
