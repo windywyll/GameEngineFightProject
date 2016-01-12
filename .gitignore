@@ -231,3 +231,5 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+/GameEngineFightProject/Debug/GameEngi.384E83CE.tlog/*.tlog
+/GameEngineFightProject/Debug/GameEngi.384E83CE.tlog/*.lastbuildstate
