@@ -18,7 +18,11 @@ Jump::~Jump()
 STATE Jump::execute(Player* p)
 {
 	if (p != nullptr)
-	p->movePosition(Vector3(0,5,0));
+	{
+		p->Recovery = Recovery;
+		p->isJumping(true);
+	}
 	
-	return MOVING;
+	
+	return JUMP;
 }

@@ -21,7 +21,7 @@ STATE Attack::execute(Player* p)
 {
 	if (p != nullptr)
 	{
-		
+		p->Recovery = Recovery;
 		float distance = p->getDistanceBetweenPlayer();
 
 		bool isSuccessful = (rand() % 100 + 1) > distance;

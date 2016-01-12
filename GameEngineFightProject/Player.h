@@ -24,6 +24,13 @@
 #include "ObserverDefeat.h"
 #include "Message.h"
 
+static Attack* attack = new Attack(50, "punch", 0, 10, 50, 50);
+static Jump* jump = new Jump("punch", 0, 50, 5, 0);
+static Block* block = new Block("punch", 0, 50, 5, 0);
+static Crouch* crouch = new Crouch("punch", 50, 0, 0, 0);
+static Move* moveRight = new Move("punch", 0, 0, 0, 0);
+static MoveLeft* moveLeft = new MoveLeft("punch", 0, 0, 0, 0);
+
 class Player {
 public: 
 	Player(int health, std::string pName, int nPl);
@@ -53,6 +60,7 @@ public:
 	void notifyObserver(Message msg);
 	void InputHandler(char in);
 	void UpdatePlayer();
+	void isJumping(bool val);
 	void UpdateTimer();
 	bool canTakeInput();
 	
@@ -63,6 +71,8 @@ public:
 	void setState(STATE st= IDLE, float duration = -1);
 
 //private:
+	float loadingTime;
+	float moveDuration;
 	float Recovery;
 	std::string name;
 	Vector3 position;

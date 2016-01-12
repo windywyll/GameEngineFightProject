@@ -1,5 +1,5 @@
 #include "Crouch.h"
-
+#include "Player.h"
 
 
 Crouch::Crouch(std::string pName,
@@ -18,6 +18,9 @@ Crouch::~Crouch()
 
 STATE Crouch::execute(Player* p)
 {
-	
+	if (p != nullptr)
+	{
+		p->Recovery = Recovery;
+	}
 	return CROUCH;
 }

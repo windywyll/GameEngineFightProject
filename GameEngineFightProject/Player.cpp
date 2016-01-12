@@ -13,6 +13,8 @@
 
 Player::Player(int health, std::string pName, int nPl)
 {
+	loadingTime = 0;
+	moveDuration = 0;
 	Recovery = 0;
 	numPlayer = nPl;
 	force = 5;
@@ -20,24 +22,24 @@ Player::Player(int health, std::string pName, int nPl)
 	lifePoints = health;
 	maxlifePoints = health;
 	currentState = new Idle();
-	float a = 0;
-	Attack* att = new Attack(50, "punch", a, a, a, 30);
+	
+	
 	ActionNext* act = new ActionNext("SUPER PUNCH !!!!");
-	act->pushBackAction(att);
-	act->pushBackAction(att);
+	act->pushBackAction(attack);
+	act->pushBackAction(attack);
 	comboList.insert(std::pair<int, ActionNext*>(1, act));
 
 	ActionNext* act2 = new ActionNext("Flying Punch");
-	act2->pushBackAction(new Jump("Jump", a, a, a, a));
-	act2->pushBackAction(new Attack(50, "coup de pied", a, a, a, 30));
+	act2->pushBackAction(jump);
+	act2->pushBackAction(attack);
 	comboList.insert(std::pair<int, ActionNext*>(2, act2));
 	
-	actionList.insert(std::pair<char, Attack*>('a', att));
-	actionList.insert(std::pair<char, Block*>('e',new Block("block", a, a, a, a)));
-	actionList.insert(std::pair<char, Crouch*>('s', new Crouch("Crouch", a, a, a, a)));
-	actionList.insert(std::pair<char, Jump*>('z', new Jump("Jump", a, a, a, a)));
-	actionList.insert(std::pair<char, Move*>('d', new Move("Move Right", a, a, a, a)));
-	actionList.insert(std::pair<char, MoveLeft*>('q', new MoveLeft("block", a, a, a, a)));
+	actionList.insert(std::pair<char, Attack*>('a', attack));
+	actionList.insert(std::pair<char, Block*>('e', block));
+	actionList.insert(std::pair<char, Crouch*>('s', crouch));
+	actionList.insert(std::pair<char, Jump*>('z', jump));
+	actionList.insert(std::pair<char, Move*>('d', moveRight));
+	actionList.insert(std::pair<char, MoveLeft*>('q', moveLeft));
 }
 
 /*Player::Player(int health, std::string pName, std::vector<Action*> actList)
@@ -52,14 +54,12 @@ Player::Player(int health, std::string pName, int nPl)
 Player::~Player()
 {
 	delete currentState;
-	for (std::map<char, Action*>::iterator it = actionList.begin(); it != actionList.end(); ++it)
-	{
-		delete it->second;
-	}
-	for (std::map<int, ActionNext*>::iterator it = comboList.begin(); it != comboList.end(); ++it)
-	{
-		delete it->second;
-	}
+	/*delete attack;
+	delete jump;
+	delete block;
+	delete crouch;
+	delete moveRight;
+	delete moveLeft;*/
 	
 	comboList.clear();
 	actionList.clear();
@@ -117,7 +117,8 @@ void Player::InputHandler(char in)
 void Player::UpdatePlayer()
 {
 	if (Recovery > 0) Recovery--;
-
+	if (loadingTime > 0) loadingTime--;
+	if (moveDuration > 0) moveDuration--;
 	switch (currentState->isInState())
 	{
 	case IDLE:
@@ -133,6 +134,9 @@ void Player::UpdatePlayer()
 		UpdateTimer();
 		break;
 	case JUMP:
+		if (currentState->duration <= 0)isJumping(false);
+		UpdateTimer();
+		
 		break;
 	case ATTACK:
 		break;
@@ -141,6 +145,18 @@ void Player::UpdatePlayer()
 		break;
 	default:
 		break;
+	}
+}
+
+void Player::isJumping(bool val)
+{
+	if (val)
+	{
+		movePosition(Vector3(0, force, 0));
+	}
+	else
+	{
+		movePosition(Vector3(0, -force, 0));
 	}
 }
 
@@ -156,7 +172,7 @@ void Player::UpdateTimer()
 
 bool Player::canTakeInput()
 {
-	if (currentState->isInState() == STUN || currentState->isInState() == DEATH || currentState->isInState() == BLOCK)
+	if (currentState->isInState() == STUN || currentState->isInState() == DEATH || currentState->isInState() == BLOCK || loadingTime > 0)
 		return false;
 	return true;
 }
@@ -261,7 +277,9 @@ void Player::useAction(Action* act)
 	currentCombo.push_back(act);
 	if (isInCombo() || Recovery == 0)
 	{
+		loadingTime = act->loadingTime;
 		setState(currentState->useAction(act, this));
+		moveDuration = act->moveDuration;
 		Recovery = act->Recovery;
 	}
 	
