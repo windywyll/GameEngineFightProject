@@ -31,6 +31,7 @@ class GameManager : public ObserverDefeat
 		void arenaChoice();
 		void optionChoice();
 		void fighting();
+		void checkEndRound();
 		void endMatch();
 		void notify(Message msg);
 	

@@ -20,14 +20,14 @@ GameManager::GameManager()
 	inputHandler = InputManager::getInstance();
 
 	listPlayer = vector<Player*>();
-	listPlayer.push_back(new Player(200, "william"));
-	listPlayer.push_back(new Player(200, "jordan"));
+	listPlayer.push_back(new Player(200, "william", 1));
+	listPlayer.push_back(new Player(200, "jordan", 2));
 
 	unsigned int i = 0;
 
 	while (i < listPlayer.size())
 	{
-		listPlayer[i]->registerObserver();
+		listPlayer[i]->registerObserver(this);
 		i++;
 	}
 
@@ -42,7 +42,7 @@ GameManager::~GameManager()
 {
 	while (listPlayer.size() > 0)
 	{
-		listPlayer.back()->unregisterObserver();
+		listPlayer.back()->unregisterObserver(this);
 		delete listPlayer.back();
 		listPlayer.pop_back();
 	}
@@ -70,7 +70,7 @@ void GameManager::notify(Message msg)
 			if (listPlayer[0]->getLife() < listPlayer[1]->getLife())
 			{
 				++numVictoryP2;
-				cout << listPlayer[0]->getName() << " Wins!" << endl;
+				cout << listPlayer[1]->getName() << " Wins!" << endl;
 			}
 
 			if (listPlayer[0]->getLife() == listPlayer[1]->getLife())
@@ -82,8 +82,6 @@ void GameManager::notify(Message msg)
 
 			cout << "----------------------------------------------------------------" << endl << endl;
 
-			roundEnded = true;
-
 			unsigned int i = 0;
 			while (i < listPlayer.size())
 			{
@@ -94,40 +92,14 @@ void GameManager::notify(Message msg)
 				break;
 		}
 		case typeMSG::death:
-			if (msg.getSource == typeSource::p1)
+			if (msg.getSource() == typeSource::p1)
 				p1Death = true;
 
-			if (msg.getSource == typeSource::p2)
+			if (msg.getSource() == typeSource::p2)
 				p2Death = true;
 			break;
 		default:
 			break;
-	}
-
-	if (roundEnded)
-	{
-		int winnningRounds = ((QuickMatch*)listGameMode[modeSelected])->getNumberRoundToWin();
-
-		if (numVictoryP1 == winnningRounds && numVictoryP1 != numVictoryP2)
-		{
-			fightRun = false;
-			cout << endl << endl << "Match Ended" << endl;
-			cout << listPlayer[0]->getName() << " Wins!" << endl << endl;
-		}
-
-		if (numVictoryP2 == winnningRounds && numVictoryP2 != numVictoryP1)
-		{
-			fightRun = false;
-			cout << endl << endl << "Match Ended" << endl;
-			cout << listPlayer[0]->getName() << " Wins!" << endl << endl;
-		}
-
-		if (numVictoryP1 == winnningRounds && numVictoryP2 == winnningRounds)
-		{
-			fightRun = false;
-			cout << endl << endl << "Match Ended" << endl;
-			cout << "DRAW" << endl << endl;
-		}
 	}
 }
 
@@ -330,20 +302,114 @@ void GameManager::fighting()
 			roundEnded = false;
 		}
 
-		
+		//Combat
 
 		++frame;
 		if (frame > 30)
 		{
 			((QuickMatch*)listGameMode[modeSelected])->secondPass();
 		}
+
+		if (p1Death)
+		{
+			if (p2Death)
+			{
+				checkEndRound();
+			}
+			else
+			{
+				if (frameConfirmDeath < frameConfirmationDelay)
+				{
+					++frameConfirmDeath;
+				}
+				else
+				{
+					checkEndRound();
+				}
+			}
+		}
+		else
+		{
+			if (p2Death)
+			{
+				if (frameConfirmDeath < frameConfirmationDelay)
+				{
+					++frameConfirmDeath;
+				}
+				else
+				{
+					checkEndRound();
+				}
+			}
+		}
 	}
 
 	endMatch();
 }
 
+void GameManager::checkEndRound()
+{
+	roundEnded = true;
+
+	if (p1Death)
+	{
+		if (p2Death)
+		{
+			++numVictoryP1;
+			++numVictoryP2;
+			cout << endl << endl << "----------------------------------------------------------------" << endl;
+			cout << "DOUBLE KO!" << endl;
+			cout << endl << endl << "----------------------------------------------------------------" << endl;
+		}
+		else
+		{
+			++numVictoryP2;
+			cout << endl << endl << "----------------------------------------------------------------" << endl;
+			cout << listPlayer[1]->getName() << " Wins!" << endl;
+			cout << endl << endl << "----------------------------------------------------------------" << endl;
+		}
+	}
+	else
+	{
+		if (p2Death)
+		{
+			++numVictoryP1;
+			cout << endl << endl << "----------------------------------------------------------------" << endl;
+			cout << listPlayer[0]->getName() << " Wins!" << endl;
+			cout << endl << endl << "----------------------------------------------------------------" << endl;
+		}
+	}
+
+	if (roundEnded)
+	{
+		int winnningRounds = ((QuickMatch*)listGameMode[modeSelected])->getNumberRoundToWin();
+
+		if (numVictoryP1 == winnningRounds && numVictoryP1 != numVictoryP2)
+		{
+			fightRun = false;
+			cout << endl << endl << "Match Ended" << endl;
+			cout << listPlayer[0]->getName() << " Wins!" << endl << endl;
+		}
+
+		if (numVictoryP2 == winnningRounds && numVictoryP2 != numVictoryP1)
+		{
+			fightRun = false;
+			cout << endl << endl << "Match Ended" << endl;
+			cout << listPlayer[1]->getName() << " Wins!" << endl << endl;
+		}
+
+		if (numVictoryP1 == winnningRounds && numVictoryP2 == winnningRounds)
+		{
+			fightRun = false;
+			cout << endl << endl << "Match Ended" << endl;
+			cout << "DRAW" << endl << endl;
+		}
+	}
+}
+
 void GameManager::endMatch()
 {
+
 	bool choiceEndMatch = false;
 
 	while (!choiceEndMatch)

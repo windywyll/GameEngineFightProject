@@ -5,13 +5,15 @@
 #include <math.h>
 #include "Player.h"
 #include <Windows.h>
+#include <algorithm>
 /**
  * Player implementation
  */
 
 
-Player::Player(int health, std::string pName)
+Player::Player(int health, std::string pName, int nPl)
 {
+	numPlayer = nPl;
 	force = 5;
 	name = pName;
 	lifePoints = health;
@@ -80,17 +82,24 @@ void Player::setDistanceBetweenPlayer(float dist)
 	distanceBetweenPlayer = dist;
 }
 
-void Player::registerObserver()
+void Player::notifyObserver(Message msg)
 {
+	unsigned int i = 0;
+	while (i < listObserver.size())
+	{
+		listObserver[i]->notify(msg);
+		i++;
+	}
 }
 
-void Player::unregisterObserver()
+void Player::registerObserver(ObserverDefeat* obs)
 {
+	listObserver.push_back(obs);
 }
 
-void Player::notifyObserver()
+void Player::unregisterObserver(ObserverDefeat* obs)
 {
-	
+	listObserver.erase(remove(listObserver.begin(), listObserver.end(), obs), listObserver.end());
 }
 
 void Player::InputHandler(std::string in)
@@ -178,6 +187,16 @@ void Player::applyDamage(int dmg, float timeStun) {
 	{
 		lifePoints = 0;
 		setState(DEATH);
+
+		Message msg;
+
+		if(numPlayer == 1)
+			msg = Message(typeMSG::death, typeSource::p1);
+
+		if(numPlayer == 2)
+			msg = Message(typeMSG::death, typeSource::p2);
+
+		notifyObserver(msg);
 		//Death
 	}
 	else if(dmg > 0)

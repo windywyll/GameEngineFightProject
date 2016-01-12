@@ -3,6 +3,7 @@
 
 #include "Vector3.h"
 
+#include <vector>
 #include <map>
 #include "Idle.h"
 #include "Moving.h"
@@ -20,10 +21,12 @@
 #include "Move.h"
 #include "MoveLeft.h"
 #include "ActionNext.h"
+#include "ObserverDefeat.h"
+#include "Message.h"
 
 class Player {
 public: 
-	Player(int health, std::string pName);
+	Player(int health, std::string pName, int nPl);
 	//Player(int health, std::string pName, std::vector<Action*> actList);
 	~Player();
 
@@ -44,9 +47,9 @@ public:
 	int getForce();
 	std::string getName();
 
-	void registerObserver();
-	void unregisterObserver();
-	void notifyObserver();
+	void registerObserver(ObserverDefeat* obs);
+	void unregisterObserver(ObserverDefeat* obs);
+	void notifyObserver(Message msg);
 	void InputHandler(std::string in);
 	void UpdatePlayer();
 	
@@ -58,9 +61,11 @@ private:
 	std::string name;
 	Vector3 position;
 	PlayerState* currentState;
+	int numPlayer;
 	int force;
 	int  lifePoints;
 	int maxlifePoints;
+	std::vector<ObserverDefeat*> listObserver;
 	std::map<int, Action*> currentCombo;
 	std::map<int, ActionNext*> comboList;
 	std::map<char, Action*> actionList;

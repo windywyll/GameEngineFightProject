@@ -233,3 +233,4 @@ _Pvt_Extensions
 .fake/
 /GameEngineFightProject/Debug/GameEngi.384E83CE.tlog/*.tlog
 /GameEngineFightProject/Debug/GameEngi.384E83CE.tlog/*.lastbuildstate
+/.vs/GameEngineFightProject/v14/*.suo
