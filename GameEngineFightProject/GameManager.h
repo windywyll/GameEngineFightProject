@@ -34,6 +34,7 @@ class GameManager : public ObserverDefeat
 		void checkEndRound();
 		void endMatch();
 		void notify(Message msg);
+		void sendDamage(int nPlayer, int dmg, float stunTime);
 	
 	private:
 		GameManager();

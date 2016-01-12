@@ -29,7 +29,7 @@ STATE Attack::execute(Player* p)
 		if (isSuccessful)
 		{
 			// notify apply attack dmg
-			//GameManager::getInstance()->sendDamage(p->numPl , dmg, this->stunTime);
+			GameManager::getInstance()->sendDamage(p->getNumPlayer() , damage, this->stunTime);
 		}
 	}
 	return ATTACK;

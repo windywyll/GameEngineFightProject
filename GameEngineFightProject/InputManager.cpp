@@ -19,3 +19,10 @@ string InputManager::handleInput()
 	cin >> toReturn;
 	return toReturn;
 }
+
+char InputManager::handleInputChar()
+{
+	char toReturn;
+	cin >> toReturn;
+	return toReturn;
+}

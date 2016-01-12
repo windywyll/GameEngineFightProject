@@ -13,11 +13,8 @@
 
 Player::Player(int health, std::string pName, int nPl)
 {
-<<<<<<< HEAD
 	Recovery = 0;
-=======
 	numPlayer = nPl;
->>>>>>> origin/master
 	force = 5;
 	name = pName;
 	lifePoints = health;
@@ -68,8 +65,7 @@ void Player::clearCurrentCombo()
 void Player::Initial()	// reset le player à l'état initial
 {
 	clearCurrentCombo();
-	delete currentState;
-	currentState = new Idle();
+	setState(IDLE);
 	lifePoints = maxlifePoints;
 }
 
@@ -103,16 +99,14 @@ void Player::unregisterObserver(ObserverDefeat* obs)
 	listObserver.erase(remove(listObserver.begin(), listObserver.end(), obs), listObserver.end());
 }
 
-void Player::InputHandler(std::string in)
+void Player::InputHandler(char in)
 {
-	char a = 'a';
-	if(actionList.find(in.front())->second != nullptr)
-	useAction(actionList.find(in.front())->second);
+	useAction(actionList.find(in)->second);
 }
 
 void Player::UpdatePlayer()
 {
-	if (Recovery > 0)Recovery--;
+	if (Recovery > 0) Recovery--;
 
 	switch (currentState->isInState())
 	{

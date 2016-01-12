@@ -54,12 +54,20 @@ GameManager::~GameManager()
 	}
 }
 
+void GameManager::sendDamage(int nPlayer, int dmg, float stunTime)
+{
+	if(nPlayer == 1)
+		listPlayer[1]->applyDamage(dmg, stunTime);
+
+	if(nPlayer == 2)
+		listPlayer[0]->applyDamage(dmg, stunTime);
+}
+
 void GameManager::notify(Message msg)
 {
 	switch (msg.getMsg())
 	{
 		case typeMSG::endTimer:
-		{
 			cout << endl << endl << "----------------------------------------------------------------" << endl;
 			if (listPlayer[0]->getLife() > listPlayer[1]->getLife())
 			{
@@ -82,15 +90,7 @@ void GameManager::notify(Message msg)
 
 			cout << "----------------------------------------------------------------" << endl << endl;
 
-			unsigned int i = 0;
-			while (i < listPlayer.size())
-			{
-				//listPlayer[i]->reset();
-				++i;
-			}
-
-				break;
-		}
+			break;
 		case typeMSG::death:
 			if (msg.getSource() == typeSource::p1)
 				p1Death = true;
@@ -287,6 +287,7 @@ void GameManager::fighting()
 
 	fightRun = true;
 	roundEnded = true;
+	unsigned int i = 0;
 	int frame = 0;
 	int frameConfirmDeath = 0;
 	int frameConfirmationDelay = 5;
@@ -297,14 +298,36 @@ void GameManager::fighting()
 	{
 		if (roundEnded)
 		{
+			frame = 0;
+			frameConfirmDeath = 0;
+
+			p1Death = false;
+			p2Death = false;
+
 			((QuickMatch*)listGameMode[modeSelected])->launchNewRound();
 			((QuickMatch*)listGameMode[modeSelected])->registerObserver(this);
 			roundEnded = false;
 		}
 
 		//Combat
+		while (i < listPlayer.size())
+		{
+			if (listPlayer[i]->canTakeInput())
+			{
+				cout << endl;
+				cout << listPlayer[i]->getName() << " - " << listPlayer[i]->getLife() << "HP - enter an action : ";
+				listPlayer[i]->InputHandler(inputHandler->handleInputChar());
+			}
+
+			listPlayer[i]->UpdatePlayer();
+
+			i++;
+		}
+
+		i = 0;
 
 		++frame;
+
 		if (frame > 30)
 		{
 			((QuickMatch*)listGameMode[modeSelected])->secondPass();
@@ -382,6 +405,13 @@ void GameManager::checkEndRound()
 
 	if (roundEnded)
 	{
+		unsigned int i = 0;
+		while (i < listPlayer.size())
+		{
+			listPlayer[i]->Initial();
+			++i;
+		}
+
 		int winnningRounds = ((QuickMatch*)listGameMode[modeSelected])->getNumberRoundToWin();
 
 		if (numVictoryP1 == winnningRounds && numVictoryP1 != numVictoryP2)
