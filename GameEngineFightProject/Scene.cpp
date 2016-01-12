@@ -1,5 +1,8 @@
 #include "Scene.h"
 
+#include <iostream>
+#include <stdio.h>
+
 using namespace std;
 
 Scene::Scene() : Scene("default")
@@ -10,7 +13,7 @@ Scene::Scene(string n)
 	name = n;
 	optionSelected = optionRange::none;
 
-	listRound = vector<Round*>();
+	listRound = vector<RoundMatch*>();
 
 	numberRoundToWin = 2;
 	limitTimeRound = 99;
@@ -34,9 +37,20 @@ void Scene::reset()
 		listRound.pop_back();
 	}
 
-	listRound = vector<Round*>();
+	listRound = vector<RoundMatch*>();
 	numberRoundToWin = 2;
 	limitTimeRound = 99;
+}
+
+void Scene::resetMatch()
+{
+	while (listRound.size() > 0)
+	{
+		delete listRound.back();
+		listRound.pop_back();
+	}
+
+	listRound = vector<RoundMatch*>();
 }
 
 string Scene::getName()
@@ -46,6 +60,8 @@ string Scene::getName()
 
 void Scene::displayOption()
 {
+	cout << endl << "Options : " << endl;
+	cout << endl;
 	cout << "- 1 : Time Limit : " << limitTimeRound << endl;
 	cout << "- 2 : Number of Rounds to Win : " << numberRoundToWin << endl;
 	cout << "- 3 : Confirm options" << endl;
@@ -114,4 +130,29 @@ void Scene::selectOptions(int selectNum)
 		cout << endl << "error bad selection" << endl << endl;
 		break;
 	}
+}
+
+void Scene::launchNewRound()
+{
+	listRound.push_back(new RoundMatch(limitTimeRound));
+}
+
+void Scene::secondPass()
+{
+	listRound.back()->secondPass();
+}
+
+void Scene::registerObserver(ObserverDefeat* obs)
+{
+	listRound.back()->registerObserver(obs);
+}
+
+void Scene::unregisterObserver(ObserverDefeat* obs)
+{
+	listRound.back()->unregisterObserver(obs);
+}
+
+int Scene::getNumberRoundToWin()
+{
+	return numberRoundToWin;
 }

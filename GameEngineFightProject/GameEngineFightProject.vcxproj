@@ -36,6 +36,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Jump.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Message.cpp" />
     <ClCompile Include="Move.cpp" />
     <ClCompile Include="MoveLeft.cpp" />
     <ClCompile Include="Moving.cpp" />
@@ -66,6 +67,7 @@
     <ClInclude Include="Idle.h" />
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Jump.h" />
+    <ClInclude Include="Message.h" />
     <ClInclude Include="Move.h" />
     <ClInclude Include="MoveLeft.h" />
     <ClInclude Include="Moving.h" />
