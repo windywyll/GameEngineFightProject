@@ -43,7 +43,6 @@ Player::Player(int health, std::string pName, int nPl)
 	act4->pushBackAction(jump);
 	act4->pushBackAction(crouch);
 	act4->pushBackAction(moveLeft);
-	act4->pushBackAction(attack);
 	comboList.insert(std::pair<int, ActionNext*>(4, act4));
 
 	ActionNext* act5 = new ActionNext("HYPER MEGA SUPERRRRR KICK");
@@ -349,7 +348,7 @@ ActionNext * Player::CheckCurrentCombo()
 
 			if (it2 == (it->second->nextAction.end() - 1))
 			{
-
+				
 				return it->second;
 			}
 			iterator++;

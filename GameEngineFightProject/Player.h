@@ -24,12 +24,12 @@
 #include "ObserverDefeat.h"
 #include "Message.h"
 
-static Attack* attack = new Attack(50, "punch", 0, 10, 50, 50);
-static Jump* jump = new Jump("punch", 0, 50, 5, 0);
-static Block* block = new Block("punch", 0, 50, 5, 0);
-static Crouch* crouch = new Crouch("punch", 50, 0, 0, 0);
-static Move* moveRight = new Move("punch", 0, 0, 0, 0);
-static MoveLeft* moveLeft = new MoveLeft("punch", 0, 0, 0, 0);
+static Attack* attack = new Attack(50, "punch", 0, 0, 0, 0);
+static Jump* jump = new Jump("jump", 0, 0, 0, 0);
+static Block* block = new Block("block", 0, 0, 0, 0);
+static Crouch* crouch = new Crouch("crouch", 0, 0, 0, 0);
+static Move* moveRight = new Move("MoveRight", 0, 0, 0, 0);
+static MoveLeft* moveLeft = new MoveLeft("MoveLeft", 0, 0, 0, 0);
 
 class Player {
 public: 

@@ -353,11 +353,14 @@ void GameManager::fighting()
 			if (listPlayer[i]->canTakeInput())
 			{
 				cout << endl;
+				cout << "duration:" << listPlayer[i]->moveDuration << " recovery:" << listPlayer[i]->Recovery << " loading:" << listPlayer[i]->loadingTime << endl;
+				cout << " state time:" << listPlayer[i]->currentState->duration << endl;
 				cout << listPlayer[i]->getName() << " - " << listPlayer[i]->getLife() << "HP - enter an action : ";
 				listPlayer[i]->InputHandler(inputHandler->handleInputChar());
 				if (listPlayer[i]->CheckCurrentCombo() != nullptr)
 				{
 					cout << "COMBO - " << listPlayer[i]->CheckCurrentCombo()->name << endl;
+					listPlayer[i]->clearCurrentCombo();
 				}
 			}
 
