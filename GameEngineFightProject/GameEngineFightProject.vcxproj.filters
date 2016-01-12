@@ -22,46 +22,22 @@
     <Filter Include="Source Files\Player\Action">
       <UniqueIdentifier>{85608e68-f813-448b-8231-a9d1bde03a6c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Manager">
+      <UniqueIdentifier>{7e142df5-0956-4635-8b20-51416238aa5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameMode">
+      <UniqueIdentifier>{8205a8e6-e6bd-4f43-83f0-bbe8284e6efc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Player\Action\Type">
+      <UniqueIdentifier>{11c8c731-3e36-438d-b8f7-a7cd855e2937}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GameMode.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ObserverDefeat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tournament.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Adventure.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="QuickMatch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Round.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Vector3.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Action.cpp">
-      <Filter>Source Files\Player\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="ActionFinal.cpp">
-      <Filter>Source Files\Player\Action</Filter>
-    </ClCompile>
-    <ClCompile Include="ActionNext.cpp">
-      <Filter>Source Files\Player\Action</Filter>
     </ClCompile>
     <ClCompile Include="CrouchState.cpp">
       <Filter>Source Files\Player\State</Filter>
@@ -75,9 +51,6 @@
     <ClCompile Include="Stun.cpp">
       <Filter>Source Files\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="Jump.cpp">
-      <Filter>Source Files\Player\Action</Filter>
-    </ClCompile>
     <ClCompile Include="Moving.cpp">
       <Filter>Source Files\Player\State</Filter>
     </ClCompile>
@@ -87,23 +60,65 @@
     <ClCompile Include="PlayerState.cpp">
       <Filter>Source Files\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="Attack.cpp">
-      <Filter>Source Files\Player\Action</Filter>
+    <ClCompile Include="BlockState.cpp">
+      <Filter>Source Files\Player\State</Filter>
     </ClCompile>
-    <ClCompile Include="Crouch.cpp">
-      <Filter>Source Files\Player\Action</Filter>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Adventure.cpp">
+      <Filter>Source Files\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMode.cpp">
+      <Filter>Source Files\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="ObserverDefeat.cpp">
+      <Filter>Source Files\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="QuickMatch.cpp">
+      <Filter>Source Files\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Round.cpp">
+      <Filter>Source Files\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Source Files\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Tournament.cpp">
+      <Filter>Source Files\GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>Source Files\Player\Action\Type</Filter>
     </ClCompile>
     <ClCompile Include="Block.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Player\Action\Type</Filter>
     </ClCompile>
-    <ClCompile Include="BlockState.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Crouch.cpp">
+      <Filter>Source Files\Player\Action\Type</Filter>
+    </ClCompile>
+    <ClCompile Include="Jump.cpp">
+      <Filter>Source Files\Player\Action\Type</Filter>
     </ClCompile>
     <ClCompile Include="Move.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Player\Action\Type</Filter>
     </ClCompile>
-    <ClCompile Include="Message.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="MoveLeft.cpp">
+      <Filter>Source Files\Player\Action\Type</Filter>
+    </ClCompile>
+    <ClCompile Include="Action.cpp">
+      <Filter>Source Files\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionFinal.cpp">
+      <Filter>Source Files\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionNext.cpp">
+      <Filter>Source Files\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackState.cpp">
+      <Filter>Source Files\Player\State</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -185,7 +200,10 @@
     <ClInclude Include="Move.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Message.h">
+    <ClInclude Include="MoveLeft.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AttackState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -193,10 +211,5 @@
     <ClInclude Include="GameManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

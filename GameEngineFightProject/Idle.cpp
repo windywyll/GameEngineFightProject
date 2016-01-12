@@ -10,16 +10,15 @@
 
 Idle::Idle()
 {
+	duration = -1;
 }
 
 
-void Idle::changeState(STATE pState)
-{
-}
+
 
 STATE Idle::useAction(Action * act, Player * p)
 {
-	return act->execute(p);;
+	return act->execute(p);
 }
 
 STATE Idle::isInState()

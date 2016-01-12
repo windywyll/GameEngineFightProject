@@ -12,8 +12,7 @@
 class Idle: public PlayerState {
 public:
 	Idle();
-
-	void changeState(STATE pState);
+	float duration;
 	STATE useAction(Action * act, Player * p);
 	STATE isInState();
 };

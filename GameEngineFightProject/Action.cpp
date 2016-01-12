@@ -8,6 +8,14 @@
  * Action implementation
  */
 
+Action::Action(std::string pName)
+{
+	name = pName;
+	loadingTime = 0;
+	moveDuration = 1;
+	Recovery = 0;
+	stunTime = 0;
+}
 
 Action::Action(std::string pName, float pLoadingTime, float pMoveDuration, float pRecovery, float pStunTime)
 {

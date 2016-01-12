@@ -6,11 +6,11 @@ class CrouchState :
 	public PlayerState
 {
 public:
-	CrouchState();
+	CrouchState(float time = -1);
 	~CrouchState();
-	void changeState(STATE pState);
+	float duration;
+	STATE useAction(Action * act, Player * p);
 	STATE isInState();
-	void useAction();
 };
 #endif
 

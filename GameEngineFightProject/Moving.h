@@ -12,9 +12,9 @@
 class Moving: public PlayerState {
 public:
 	Moving();
-	void changeState();
+	float duration;
 	STATE useAction(Action * act, Player * p);
-	
+	STATE isInState();
 };
 
 #endif //_MOVING_H

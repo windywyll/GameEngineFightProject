@@ -9,11 +9,19 @@
  * Stun implementation
  */
 
-	 void Stun::changeState()
- {
- }
 
-	 void Stun::useAction(Action* act)
-	 {
 
-	 }
+Stun::Stun(float time)
+{
+	duration = time;
+}
+
+STATE Stun::useAction(Action * act, Player * p)
+{
+	return STUN;
+}
+
+STATE Stun::isInState()
+{
+	return STUN;
+}

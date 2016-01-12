@@ -1,12 +1,11 @@
 #pragma once
 #include "PlayerState.h"
-class BlockState :
+class AttackState :
 	public PlayerState
 {
 public:
-	BlockState();
-	~BlockState();
-
+	AttackState();
+	~AttackState();
 	float duration;
 	STATE useAction(Action * act, Player * p);
 	STATE isInState();

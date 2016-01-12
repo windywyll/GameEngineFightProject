@@ -13,7 +13,12 @@ class ActionNext: public Action {
 public:
 	std::vector<Action*> nextAction;
 	
-	Action* getAction(Action* act);
+	Action* getActionInList(Action* act);
+	Action* getActionInListByName(STATE act);
+
+	bool useAction(Action * act);
+
+	ActionNext(std::string pName);
 
 	ActionNext(std::string pName,
 		float loadingTime,

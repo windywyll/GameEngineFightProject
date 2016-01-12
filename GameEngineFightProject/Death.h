@@ -12,9 +12,9 @@
 class Death: public PlayerState {
 public:
 	Death();
-
-	void changeState(STATE p);
+	float duration;
 	STATE useAction(Action * act, Player * p);
+	STATE isInState();
 };
 
 #endif //_DEATH_H
