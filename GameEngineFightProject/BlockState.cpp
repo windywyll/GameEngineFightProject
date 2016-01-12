@@ -2,9 +2,9 @@
 #include "Player.h"
 
 
-BlockState::BlockState()
+BlockState::BlockState(float timer)
 {
-	duration = -1;
+	duration = timer;
 }
 
 

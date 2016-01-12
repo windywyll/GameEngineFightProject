@@ -49,12 +49,16 @@ public:
 	void notifyObserver();
 	void InputHandler(std::string in);
 	void UpdatePlayer();
+	void UpdateTimer();
+	bool canTakeInput();
 	
 	// public pour test seulement
-	void useAction(Action* act); 
+	void useAction(Action* act);
+	bool CheckCombo();
 	void setState(STATE st= IDLE, float duration = -1);
 
 private:
+	float Recovery;
 	std::string name;
 	Vector3 position;
 	PlayerState* currentState;

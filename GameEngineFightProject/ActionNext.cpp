@@ -31,6 +31,21 @@ Action * ActionNext::getActionInListByName(STATE act)
 	return nullptr;
 }
 
+Action * ActionNext::getActionInListByID(int ID)
+{
+	int i = 0;
+	for each (Action* var in nextAction)
+	{
+		if (i == ID)
+		{
+			return var;
+		}	
+		i++;
+	}
+
+	return nullptr;
+}
+
 bool ActionNext::useAction(Action * act)
 {
 	bool found = false;

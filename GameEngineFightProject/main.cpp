@@ -6,9 +6,9 @@ using namespace std;
 
 int main()
 {
-	GameManager* gm = GameManager::getInstance();
-	gm->startGame();
-	/*Player P1 = Player(50, "JEAN");
+	/*GameManager* gm = GameManager::getInstance();
+	gm->startGame();*/
+	Player P1 = Player(50, "JEAN");
 	Player P2 = Player(50, "JEANNE");
 	Move* j = new Move("jump",0.0,0.0,0.0,0.0);
 	
@@ -25,6 +25,6 @@ int main()
 
 
 	system("PAUSE");
-	delete j;*/
+	delete j;
 	return 0;
 }

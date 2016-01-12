@@ -12,13 +12,13 @@
 
 Player::Player(int health, std::string pName)
 {
+	Recovery = 0;
 	force = 5;
 	name = pName;
 	lifePoints = health;
 	maxlifePoints = health;
 	currentState = new Idle();
 	float a = 0;
-	currentCombo = std::map<int, Action*>();
 	
 	actionList.insert(std::pair<char, Attack*>('a', new Attack(50, "coup de pied", a, a, a, 30)));
 	actionList.insert(std::pair<char, Block*>('e',new Block("block", a, a, a, a)));
@@ -39,6 +39,7 @@ Player::Player(int health, std::string pName)
 
 Player::~Player()
 {
+	delete currentState;
 	for (std::map<char, Action*>::iterator it = actionList.begin(); it != actionList.end(); ++it)
 	{
 		delete it->second;
@@ -47,18 +48,15 @@ Player::~Player()
 	{
 		delete it->second;
 	}
+	
 	comboList.clear();
 	actionList.clear();
 	clearCurrentCombo();
-	delete currentState;
+	
 }
 
 void Player::clearCurrentCombo()
 {
-	for (std::map<int, Action*>::iterator it = currentCombo.begin(); it != currentCombo.end(); ++it)
-	{
-		delete it->second;
-	}
 	currentCombo.clear();
 }
 
@@ -102,6 +100,8 @@ void Player::InputHandler(std::string in)
 
 void Player::UpdatePlayer()
 {
+	if (Recovery > 0)Recovery--;
+
 	switch (currentState->isInState())
 	{
 	case IDLE:
@@ -109,28 +109,40 @@ void Player::UpdatePlayer()
 	case DEATH:
 		break;
 	case STUN:
-		if (currentState->duration <= 0){
-			setState();
-		}else{
-			currentState->duration--;
-		}break;
+		UpdateTimer();
+		break;
 	case MOVING:
 		break;
 	case CROUCH:
-		if (currentState->duration <= 0){
-			setState();
-		}else{
-			currentState->duration--;
-		}break;
+		UpdateTimer();
+		break;
 	case JUMP:
 		break;
 	case ATTACK:
 		break;
 	case BLOCK:
+		UpdateTimer();
 		break;
 	default:
 		break;
 	}
+}
+
+void Player::UpdateTimer()
+{
+	if (currentState->duration <= 0) {
+		setState();
+	}
+	else {
+		currentState->duration--;
+	}
+}
+
+bool Player::canTakeInput()
+{
+	if (currentState->isInState() == STUN || currentState->isInState() == DEATH || currentState->isInState() == BLOCK)
+		return false;
+	return true;
 }
 
 PlayerState* Player::getCurrentState()
@@ -157,7 +169,7 @@ void Player::setState(STATE st, float duration)
 		break;
 	case ATTACK:currentState = new AttackState();
 		break;
-	case BLOCK:currentState = new BlockState();
+	case BLOCK:currentState = new BlockState(duration);
 		break;
 	default:
 		currentState = new Idle();
@@ -220,8 +232,37 @@ void Player::healing(int point) {
 
 void Player::useAction(Action* act)
 {
-	currentCombo.at(currentCombo.size()) = act;
-	setState(currentState->useAction(act, this));
+	currentCombo[currentCombo.size()] = act;
+	if (CheckCombo() || Recovery == 0)
+	{
+		setState(currentState->useAction(act, this));
+		Recovery = act->Recovery;
+	}
+	
+}
+
+bool Player::CheckCombo()
+{
+	
+	bool inCombo = false;
+	int cmpt = 0;
+
+	for (std::map<int, ActionNext*>::iterator it = comboList.begin(); it != comboList.end(); ++it)
+	{
+		for (int i = 0; i < currentCombo.size(); i++)
+		{
+			if (it->second->getActionInListByID(i) != currentCombo.at(i))
+			{
+				cmpt++;
+				break;
+			}
+		}
+	}
+
+	if (cmpt < comboList.size())
+		inCombo = true;
+
+	return inCombo;
 }
 
 void Player::movePosition(Vector3 pos)

@@ -15,7 +15,7 @@ public:
 	
 	Action* getActionInList(Action* act);
 	Action* getActionInListByName(STATE act);
-
+	Action* getActionInListByID(int ID);
 	bool useAction(Action * act);
 
 	ActionNext(std::string pName);

@@ -4,7 +4,7 @@ class BlockState :
 	public PlayerState
 {
 public:
-	BlockState();
+	BlockState(float timer = 0);
 	~BlockState();
 
 	float duration;
