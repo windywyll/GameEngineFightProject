@@ -9,8 +9,8 @@ public:
 	CrouchState();
 	~CrouchState();
 	void changeState(STATE pState);
+	STATE useAction(Action * act, Player * p);
 	STATE isInState();
-	void useAction();
 };
 #endif
 

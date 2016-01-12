@@ -13,8 +13,8 @@ class Death: public PlayerState {
 public:
 	Death();
 
-	void changeState(STATE p);
 	STATE useAction(Action * act, Player * p);
+	STATE isInState();
 };
 
 #endif //_DEATH_H

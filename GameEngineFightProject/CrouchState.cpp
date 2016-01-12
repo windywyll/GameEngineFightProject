@@ -11,8 +11,9 @@ CrouchState::~CrouchState()
 {
 }
 
-void CrouchState::changeState(STATE pState)
+STATE CrouchState::useAction(Action * act, Player * p)
 {
+	return act->execute(p);
 }
 
 STATE CrouchState::isInState()

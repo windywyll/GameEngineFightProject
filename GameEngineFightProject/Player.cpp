@@ -12,6 +12,7 @@
 
 Player::Player(int health, std::string pName)
 {
+	force = 5;
 	name = pName;
 	lifePoints = health;
 	currentState = new Idle();
@@ -20,10 +21,11 @@ Player::Player(int health, std::string pName)
 
 Player::Player(int health, std::string pName, std::vector<Action*> actList)
 {
+	force = 5;
 	lifePoints = health;
 	name = pName;
 	actionList = actList;
-	currentState->changeState(IDLE);
+	currentState = new Idle();
 }
 
 Player::~Player()
@@ -58,9 +60,30 @@ PlayerState* Player::getCurrentState()
 	return currentState;
 }
 
-void Player::setState(STATE st)
+void Player::setState(STATE st = IDLE)
 {
-	currentState->changeState(st);
+	switch (st)
+	{
+	case IDLE:currentState = new Idle();
+		break;
+	case DEATH:currentState = new Death();
+		break;
+	case STUN:currentState = new Stun();
+		break;
+	case MOVING:currentState = new Moving();
+		break;
+	case CROUCH:currentState = new CrouchState();
+		break;
+	case JUMP:currentState = new Moving();
+		break;
+	case ATTACK:currentState = new AttackState();
+		break;
+	case BLOCK:currentState = new BlockState();
+		break;
+	default:
+		currentState = new Idle();
+		break;
+	}
 }
 
 
@@ -73,17 +96,15 @@ void Player::applyDamage(int dmg) {
 	if (dmg >= lifePoints)
 	{
 		lifePoints = 0;
-		currentState->changeState(DEATH);
+		setState(DEATH);
 		//Death
 	}
 	else if(dmg > 0)
 	{
 		// stuned
-		currentState->changeState(STUN);
+		setState(STUN);
 		lifePoints -= dmg;
-	}
-	
-	
+	}	
 }
 
 int Player::getLife()
@@ -91,39 +112,14 @@ int Player::getLife()
 	return lifePoints;
 }
 
-
 void Player::healing(int point) {
 	// inutile : pas dans le sujet
 }
 
 void Player::useAction(Action* act)
 {
-	currentState->changeState(currentState->useAction(act, this));
+	setState(currentState->useAction(act, this));
 }
-
-/*void Player::handleState(STATE st)
-{
-	currentState->changeState(st);
-	switch (st)
-	{
-	case IDLE:
-		break;
-	case DEATH:Death();
-		break;
-	case STUN:;
-		break;
-	case MOVING:;
-		break;
-	case CROUCH:;
-		break;
-	case JUMP:Jump();
-		break;
-	case ATTACK:Attack();
-		break;
-	default:;
-	};
-}*/
-
 
 void Player::movePosition(Vector3 pos)
 {

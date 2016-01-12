@@ -9,6 +9,11 @@
  * ActionFinal implementation
  */
 
+ActionFinal::ActionFinal(std::string pName) : Action(pName)
+{
+
+}
+
 ActionFinal::ActionFinal(std::string pName,
 	float loadingTime,
 	float moveDuration,

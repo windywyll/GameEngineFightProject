@@ -12,6 +12,8 @@
 class ActionFinal: public Action {
 public:
 
+	ActionFinal(std::string pName);
+
 	ActionFinal(std::string pName,
 		float loadingTime,
 		float moveDuration,

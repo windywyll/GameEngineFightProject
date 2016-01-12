@@ -6,6 +6,8 @@
 #include "Idle.h"
 #include "Moving.h"
 #include "Stun.h"
+#include "AttackState.h"
+#include "BlockState.h"
 #include "Death.h"
 #include "PlayerState.h"
 #include "CrouchState.h"
@@ -20,8 +22,8 @@ public:
 	~Player();
 	std::string name;
 	Vector3 position;
-	int direction;
 	PlayerState* currentState;
+	int force;
 	int  lifePoints;
 	std::vector<Action*> actionList;
 	float distanceBetweenPlayer;

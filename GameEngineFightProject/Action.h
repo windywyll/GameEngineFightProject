@@ -12,7 +12,9 @@ class Player;
 class Action{
 public: 
 	
-	Action(std::string pName, 
+	Action(std::string pName);
+
+	Action(std::string pName,
 	float loadingTime,
 	float moveDuration,
 	float Recovery,

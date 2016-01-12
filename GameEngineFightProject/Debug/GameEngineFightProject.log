@@ -1,2 +1,22 @@
-﻿  main.cpp
+﻿  Stun.cpp
+  PlayerState.cpp
+  Player.cpp
+  Moving.cpp
+  Death.cpp
+  BlockState.cpp
+  AttackState.cpp
+  Generating Code...
+  Compiling...
+  MoveLeft.cpp
+c:\users\w.patruno\documents\github\gameenginefightproject\gameenginefightproject\moveleft.cpp(16): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Move.cpp
+c:\users\w.patruno\documents\github\gameenginefightproject\gameenginefightproject\move.cpp(22): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  main.cpp
+  Jump.cpp
+  Idle.cpp
+  GameManager.cpp
+  CrouchState.cpp
+  Attack.cpp
+  Action.cpp
+  Generating Code...
   GameEngineFightProject.vcxproj -> C:\Users\w.patruno\Documents\GitHub\GameEngineFightProject\Debug\GameEngineFightProject.exe

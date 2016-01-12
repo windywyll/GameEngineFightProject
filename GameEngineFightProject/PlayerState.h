@@ -11,8 +11,7 @@
 class PlayerState {
 public: 
 	
-	virtual void changeState(STATE pState)= 0;
-	virtual STATE useAction(Action* act, Player * p) = 0;
+	virtual STATE useAction(Action* act, Player * p = nullptr) = 0;
 	virtual STATE isInState() = 0;
 };
 

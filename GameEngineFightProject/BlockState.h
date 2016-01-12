@@ -7,7 +7,7 @@ public:
 	BlockState();
 	~BlockState();
 
-	void changeState();
 	STATE useAction(Action * act, Player * p);
+	STATE isInState();
 };
 

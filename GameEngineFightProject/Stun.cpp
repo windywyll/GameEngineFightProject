@@ -9,11 +9,15 @@
  * Stun implementation
  */
 
-	 void Stun::changeState()
- {
- }
 
-	 void Stun::useAction(Action* act)
-	 {
 
-	 }
+
+STATE Stun::useAction(Action * act, Player * p)
+{
+	return STATE();
+}
+
+STATE Stun::isInState()
+{
+	return STUN;
+}

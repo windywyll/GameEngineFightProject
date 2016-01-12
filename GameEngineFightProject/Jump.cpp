@@ -17,6 +17,7 @@ Jump::~Jump()
 
 STATE Jump::execute(Player* p)
 {
+	if (p != nullptr)
 	p->movePosition(Vector3(0,5,0));
 	
 	return MOVING;

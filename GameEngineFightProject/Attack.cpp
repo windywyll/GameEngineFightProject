@@ -19,10 +19,13 @@ Attack::~Attack()
 
 STATE Attack::execute(Player* p)
 {
-	float distance = p->getDistanceBetweenPlayer();
+	if (p != nullptr)
+	{
+	
+		float distance = p->getDistanceBetweenPlayer();
 
-	bool isSuccessful = (rand() % 100 + 1) > distance;
-
+		bool isSuccessful = (rand() % 100 + 1) > distance;
+	}
 	//if (isSuccessful); // notify apply attack dmg
 
 	return ATTACK;
