@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CROUCHSTATE
+#define	CROUCHSTATE
+
 #include "PlayerState.h"
 class CrouchState :
 	public PlayerState
@@ -6,6 +8,9 @@ class CrouchState :
 public:
 	CrouchState();
 	~CrouchState();
-	void changeState(PLAYER::STATE pState);
+	void changeState(STATE pState);
+	STATE isInState();
+	void useAction();
 };
+#endif
 

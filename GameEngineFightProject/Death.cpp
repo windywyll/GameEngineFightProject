@@ -12,9 +12,15 @@ Death::Death()
 {
 }
 
-void Death::changeState(PLAYER::STATE p)
+void Death::changeState(STATE p)
 {
 
+}
+
+STATE Death::useAction(Action * act, Player * p)
+{
+
+	return DEATH;
 }
 
 

@@ -2,7 +2,8 @@
  * Project Untitled
 */
 #include "Action.h"
-
+#include "Vector3.h"
+#include "Player.h"
 /**
  * Action implementation
  */

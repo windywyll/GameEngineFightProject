@@ -20,7 +20,7 @@ public:
 		float moveDuration,
 		float Recovery,
 		float stunTime);
-	virtual void execute(Player* p = nullptr)=0;
+	virtual STATE execute(Player* p = nullptr)=0;
 };
 
 #endif //_ACTIONNEXT_H

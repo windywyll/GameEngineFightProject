@@ -10,8 +10,8 @@ GameManager::GameManager()
 	inputHandler = InputManager::getInstance();
 
 	listPlayer = vector<Player*>();
-	listPlayer.push_back(new Player(200));
-	listPlayer.push_back(new Player(200));
+	listPlayer.push_back(new Player(200, "william"));
+	listPlayer.push_back(new Player(200, "jordan"));
 
 	listGameMode = vector<GameMode*>();
 	listGameMode.push_back(new Adventure());

@@ -12,6 +12,6 @@ public:
 		float stunTime);
 	~Jump();
 
-	void execute(Player* p);
+	STATE execute(Player* p);
 };
 

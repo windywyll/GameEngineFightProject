@@ -1,27 +1,19 @@
 /**
  * Project Untitled
  */
-
-
+#include "ENUMSTATE.h"
+#include "Action.h"
 #ifndef _PLAYERSTATE_H
 #define _PLAYERSTATE_H
 
-namespace PLAYER
-{
-	enum STATE
-	{
-		IDLE,
-		DEATH,
-		STUN,
-		MOVING,
-		CROUCH
-	};
-}
+
 
 class PlayerState {
 public: 
 	
-	virtual void changeState(PLAYER::STATE pState)= 0;
+	virtual void changeState(STATE pState)= 0;
+	virtual STATE useAction(Action* act, Player * p) = 0;
+	virtual STATE isInState() = 0;
 };
 
 #endif //_PLAYERSTATE_H

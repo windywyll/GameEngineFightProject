@@ -12,3 +12,8 @@
 	 void Stun::changeState()
  {
  }
+
+	 void Stun::useAction(Action* act)
+	 {
+
+	 }

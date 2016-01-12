@@ -13,35 +13,17 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Player">
+      <UniqueIdentifier>{ed3a90cb-0a75-49e0-979f-5c58b107aaa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Player\State">
+      <UniqueIdentifier>{361c4735-0eb0-4c0f-aa84-d79c61c1a490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Player\Action">
+      <UniqueIdentifier>{85608e68-f813-448b-8231-a9d1bde03a6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Action.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ActionFinal.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ActionNext.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Death.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Idle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Moving.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Stun.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,10 +51,55 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CrouchState.cpp">
+    <ClCompile Include="Vector3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Vector3.cpp">
+    <ClCompile Include="Action.cpp">
+      <Filter>Source Files\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionFinal.cpp">
+      <Filter>Source Files\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="ActionNext.cpp">
+      <Filter>Source Files\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="CrouchState.cpp">
+      <Filter>Source Files\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Death.cpp">
+      <Filter>Source Files\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Idle.cpp">
+      <Filter>Source Files\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Stun.cpp">
+      <Filter>Source Files\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Jump.cpp">
+      <Filter>Source Files\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Moving.cpp">
+      <Filter>Source Files\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerState.cpp">
+      <Filter>Source Files\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Attack.cpp">
+      <Filter>Source Files\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Crouch.cpp">
+      <Filter>Source Files\Player\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Block.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Move.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -132,6 +159,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Vector3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Jump.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ENUMSTATE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Attack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Crouch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Block.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Move.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
