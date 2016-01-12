@@ -16,7 +16,15 @@ Player::Player(int health, std::string pName)
 	name = pName;
 	lifePoints = health;
 	currentState = new Idle();
+	float a = 0;
 	
+	
+	actionList.insert(std::pair<char, Attack*>('a', new Attack(50, "coup de pied", a, a, a, 30)));
+	actionList.insert(std::pair<char, Block*>('e',new Block("block", a, a, a, a)));
+	actionList.insert(std::pair<char, Crouch*>('s', new Crouch("Crouch", a, a, a, a)));
+	actionList.insert(std::pair<char, Jump*>('z', new Jump("Jump", a, a, a, a)));
+	actionList.insert(std::pair<char, Move*>('d', new Move("Move Right", a, a, a, a)));
+	actionList.insert(std::pair<char, MoveLeft*>('q', new MoveLeft("block", a, a, a, a)));
 }
 
 /*Player::Player(int health, std::string pName, std::vector<Action*> actList)
@@ -30,7 +38,13 @@ Player::Player(int health, std::string pName)
 
 Player::~Player()
 {
+	for (std::map<char, Action*>::iterator it = actionList.begin(); it != actionList.end(); ++it)
+	{
+		delete it->second;
+	}
+	actionList.clear();
 	delete currentState;
+	delete &actionList;
 }
 
 float Player::getDistanceBetweenPlayer()
@@ -53,6 +67,13 @@ void Player::unregisterObserver()
 
 void Player::notifyObserver()
 {
+	
+}
+
+void Player::InputHandler(std::string in)
+{
+	if(actionList[in.front] != nullptr)
+	useAction(actionList[in.front]);
 }
 
 void Player::UpdatePlayer()

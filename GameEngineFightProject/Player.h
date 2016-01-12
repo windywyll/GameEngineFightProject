@@ -2,16 +2,22 @@
 #define _PLAYER_H
 
 #include "Vector3.h"
-#include <vector>
+#include <map>
 #include "Idle.h"
 #include "Moving.h"
 #include "Stun.h"
+#include "Block.h"
 #include "AttackState.h"
 #include "BlockState.h"
 #include "Death.h"
+#include "Attack.h"
 #include "PlayerState.h"
 #include "CrouchState.h"
 #include "Action.h"
+#include "Crouch.h"
+#include "Jump.h"
+#include "Move.h"
+#include "MoveLeft.h"
 
 class Player {
 public: 
@@ -35,6 +41,7 @@ public:
 	void registerObserver();
 	void unregisterObserver();
 	void notifyObserver();
+	void InputHandler(std::string in);
 	void UpdatePlayer();
 	
 	// public pour test seulement
@@ -47,7 +54,7 @@ private:
 	PlayerState* currentState;
 	int force;
 	int  lifePoints;
-	std::vector<Action*> actionList;
+	std::map<char, Action*> actionList;
 	float distanceBetweenPlayer;
 	
 };
