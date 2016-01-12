@@ -2,6 +2,7 @@
 #define _PLAYER_H
 
 #include "Vector3.h"
+
 #include <map>
 #include "Idle.h"
 #include "Moving.h"
@@ -25,6 +26,8 @@ public:
 	Player(int health, std::string pName);
 	//Player(int health, std::string pName, std::vector<Action*> actList);
 	~Player();
+
+	void clearCurrentCombo();
 
 	void Initial();	// reset le player à l'état initial
 	
@@ -58,7 +61,7 @@ private:
 	int force;
 	int  lifePoints;
 	int maxlifePoints;
-	Action* currentCombo[5];
+	std::map<int, Action*> currentCombo;
 	std::map<int, ActionNext*> comboList;
 	std::map<char, Action*> actionList;
 	float distanceBetweenPlayer;

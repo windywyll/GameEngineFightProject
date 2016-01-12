@@ -18,7 +18,7 @@ Player::Player(int health, std::string pName)
 	maxlifePoints = health;
 	currentState = new Idle();
 	float a = 0;
-	
+	currentCombo = std::map<int, Action*>();
 	
 	actionList.insert(std::pair<char, Attack*>('a', new Attack(50, "coup de pied", a, a, a, 30)));
 	actionList.insert(std::pair<char, Block*>('e',new Block("block", a, a, a, a)));
@@ -49,12 +49,25 @@ Player::~Player()
 	}
 	comboList.clear();
 	actionList.clear();
+	clearCurrentCombo();
 	delete currentState;
 	delete &actionList;
+	delete &currentCombo;
+	delete &comboList;
+}
+
+void Player::clearCurrentCombo()
+{
+	for (std::map<int, Action*>::iterator it = currentCombo.begin(); it != currentCombo.end(); ++it)
+	{
+		delete it->second;
+	}
+	currentCombo.clear();
 }
 
 void Player::Initial()	// reset le player à l'état initial
 {
+	clearCurrentCombo();
 	delete currentState;
 	currentState = new Idle();
 	lifePoints = maxlifePoints;
@@ -85,8 +98,9 @@ void Player::notifyObserver()
 
 void Player::InputHandler(std::string in)
 {
-	if(actionList[in.front] != nullptr)
-	useAction(actionList[in.front]);
+	char a = 'a';
+	if(actionList.find(in.front())->second != nullptr)
+	useAction(actionList.find(in.front())->second);
 }
 
 void Player::UpdatePlayer()
@@ -155,6 +169,8 @@ void Player::setState(STATE st, float duration)
 }
 
 
+
+
 void Player::applyDamage(int dmg, float timeStun) {
 	dmg = abs(dmg);
 	bool dodge = (currentState->isInState() == CROUCH);
@@ -207,6 +223,7 @@ void Player::healing(int point) {
 
 void Player::useAction(Action* act)
 {
+	currentCombo.at(currentCombo.size()) = act;
 	setState(currentState->useAction(act, this));
 }
 
