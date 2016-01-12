@@ -2,6 +2,7 @@
 #define _PLAYER_H
 
 #include "Vector3.h"
+
 #include <map>
 #include "Idle.h"
 #include "Moving.h"
@@ -18,12 +19,17 @@
 #include "Jump.h"
 #include "Move.h"
 #include "MoveLeft.h"
+#include "ActionNext.h"
 
 class Player {
 public: 
 	Player(int health, std::string pName);
 	//Player(int health, std::string pName, std::vector<Action*> actList);
 	~Player();
+
+	void clearCurrentCombo();
+
+	void Initial();	// reset le player à l'état initial
 	
 	void setDistanceBetweenPlayer(float dist);
 	void applyDamage(int dmg, float timeStun = 0);
@@ -54,6 +60,9 @@ private:
 	PlayerState* currentState;
 	int force;
 	int  lifePoints;
+	int maxlifePoints;
+	std::map<int, Action*> currentCombo;
+	std::map<int, ActionNext*> comboList;
 	std::map<char, Action*> actionList;
 	float distanceBetweenPlayer;
 	

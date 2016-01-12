@@ -2,12 +2,6 @@
 
 
 
-CrouchState::CrouchState()
-{
-	duration = -1;
-}
-
-
 CrouchState::CrouchState(float time)
 {
 	duration = time;
