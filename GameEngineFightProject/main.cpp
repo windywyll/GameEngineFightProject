@@ -5,7 +5,8 @@
 #include "Move.h"
 using namespace std;
 
-void mainWill()
+// Debug
+/*void mainTest()
 {
 	Player P1 = Player(50, "JEAN", 1);
 	Player P2 = Player(50, "JEANNE", 1);
@@ -18,17 +19,13 @@ void mainWill()
 
 	system("PAUSE");
 	delete j;
-}
+}*/
 
-void mainJord()
-{
-	GameManager* gm = GameManager::getInstance();
-	gm->startGame();
-}
 
 int main()
 {
-	mainJord();
+	GameManager* Enginear = GameManager::getInstance();
+	Enginear->startGame();
 	
 	return 0;
 }
