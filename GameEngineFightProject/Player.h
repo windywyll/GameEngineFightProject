@@ -18,12 +18,15 @@
 #include "Jump.h"
 #include "Move.h"
 #include "MoveLeft.h"
+#include "ActionNext.h"
 
 class Player {
 public: 
 	Player(int health, std::string pName);
 	//Player(int health, std::string pName, std::vector<Action*> actList);
 	~Player();
+
+	void Initial();	// reset le player à l'état initial
 	
 	void setDistanceBetweenPlayer(float dist);
 	void applyDamage(int dmg, float timeStun = 0);
@@ -54,6 +57,9 @@ private:
 	PlayerState* currentState;
 	int force;
 	int  lifePoints;
+	int maxlifePoints;
+	Action* currentCombo[5];
+	std::map<int, ActionNext*> comboList;
 	std::map<char, Action*> actionList;
 	float distanceBetweenPlayer;
 	

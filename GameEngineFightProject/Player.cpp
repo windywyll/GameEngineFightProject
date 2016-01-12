@@ -15,6 +15,7 @@ Player::Player(int health, std::string pName)
 	force = 5;
 	name = pName;
 	lifePoints = health;
+	maxlifePoints = health;
 	currentState = new Idle();
 	float a = 0;
 	
@@ -42,9 +43,21 @@ Player::~Player()
 	{
 		delete it->second;
 	}
+	for (std::map<int, ActionNext*>::iterator it = comboList.begin(); it != comboList.end(); ++it)
+	{
+		delete it->second;
+	}
+	comboList.clear();
 	actionList.clear();
 	delete currentState;
 	delete &actionList;
+}
+
+void Player::Initial()	// reset le player à l'état initial
+{
+	delete currentState;
+	currentState = new Idle();
+	lifePoints = maxlifePoints;
 }
 
 float Player::getDistanceBetweenPlayer()
