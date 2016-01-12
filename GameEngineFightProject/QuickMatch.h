@@ -13,13 +13,19 @@ class QuickMatch : public GameMode
 		void displayOptions();
 		void reset();
 		void resetOptions();
+		void resetMatch();
+		void launchNewRound();
 		bool selectArena(int selectNum);
 		void selectOptions(int selectNum);
 		int getSelectedArena();
 		int getOptionSelected();
+		int getNumberRoundToWin();
 		bool getOptionConfirmed();
 		bool getOptionsCancel();
 		void setSelectedOption(int option, int value);
+		void secondPass();
+		void registerObserver(ObserverDefeat* obs);
+		void unregisterObserver(ObserverDefeat* obs);
 
 	private:
 		enum arenaRange{none = -1, quarry = 0, wasteland = 1, exit = 8};

@@ -4,7 +4,7 @@ using namespace std;
 
 QuickMatch::QuickMatch()
 {
-	name = " Quick Match";
+	name = "Quick Match";
 
 	arenaSelected = arenaRange::none;
 
@@ -32,6 +32,11 @@ void QuickMatch::reset()
 void QuickMatch::resetOptions()
 {
 	listArena[arenaSelected]->reset();
+}
+
+void QuickMatch::resetMatch()
+{
+	listArena[arenaSelected]->resetMatch();
 }
 
 void QuickMatch::selectMode()
@@ -100,7 +105,7 @@ void QuickMatch::displayArena()
 		cout << "- " << (i + 1) << " : " << listArena[i]->getName() << endl;
 	}
 
-	cout << "- 9 : Return to Game Mode Seection" << endl;
+	cout << "- 9 : Return to Game Mode Section" << endl;
 
 	cout << endl;
 }
@@ -108,4 +113,29 @@ void QuickMatch::displayArena()
 void QuickMatch::displayOptions()
 {
 	listArena[arenaSelected]->displayOption();
+}
+
+void QuickMatch::launchNewRound()
+{
+	listArena[arenaSelected]->launchNewRound();
+}
+
+void QuickMatch::secondPass()
+{
+	listArena[arenaSelected]->secondPass();
+}
+
+void QuickMatch::registerObserver(ObserverDefeat* obs)
+{
+	listArena[arenaSelected]->registerObserver(obs);
+}
+
+void QuickMatch::unregisterObserver(ObserverDefeat* obs)
+{
+	listArena[arenaSelected]->unregisterObserver(obs);
+}
+
+int QuickMatch::getNumberRoundToWin()
+{
+	return listArena[arenaSelected]->getNumberRoundToWin();
 }

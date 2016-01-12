@@ -3,8 +3,6 @@
 
 #include <vector>
 #include <string>
-#include <iostream>
-#include <stdio.h>
 
 #include "ObserverDefeat.h"
 #include "InputManager.h"
@@ -33,14 +31,16 @@ class GameManager : public ObserverDefeat
 		void arenaChoice();
 		void optionChoice();
 		void fighting();
-		void notify();
+		void endMatch();
+		void notify(Message msg);
 	
 	private:
 		GameManager();
 		~GameManager();
 		enum ModeRange { None = -1, partieRapide = 2, Tournoi = 1, Aventure = 0, Exit = 8 };
 		ModeRange modeSelected;
-		bool run;
+		bool run, fightRun, roundEnded, resetMatch, returnToArenaSelection, returnToOptionSelection;
+		int fps = 30, numVictoryP1, numVictoryP2;
 		InputManager* inputHandler;
 		std::vector<GameMode*> listGameMode;
 		std::vector<Player*> listPlayer;
