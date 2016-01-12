@@ -16,6 +16,7 @@ class InputManager
 		}
 
 		std::string handleInput();
+		char handleInputChar();
 
 	private:
 		InputManager();

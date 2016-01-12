@@ -46,11 +46,12 @@ public:
 	Vector3 getPosition();
 	int getForce();
 	std::string getName();
+	int getNumPlayer() { return numPlayer; };
 
 	void registerObserver(ObserverDefeat* obs);
 	void unregisterObserver(ObserverDefeat* obs);
 	void notifyObserver(Message msg);
-	void InputHandler(std::string in);
+	void InputHandler(char in);
 	void UpdatePlayer();
 	void UpdateTimer();
 	bool canTakeInput();
