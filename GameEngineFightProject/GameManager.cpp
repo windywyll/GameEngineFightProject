@@ -68,7 +68,7 @@ void GameManager::notify(Message msg)
 	switch (msg.getMsg())
 	{
 		case typeMSG::endTimer:
-			cout << endl << endl << "----------------------------------------------------------------" << endl;
+			cout << endl << endl << "--------------------------------------------------------------------------------" << endl;
 			if (listPlayer[0]->getLife() > listPlayer[1]->getLife())
 			{
 				++numVictoryP1;
@@ -88,7 +88,7 @@ void GameManager::notify(Message msg)
 				cout << "DRAW" << endl;
 			}
 
-			cout << "----------------------------------------------------------------" << endl << endl;
+			cout << "--------------------------------------------------------------------------------" << endl << endl;
 
 			break;
 		case typeMSG::death:
@@ -122,6 +122,11 @@ void GameManager::startGame()
 			tournamentSelected();
 		}
 
+		while (modeSelected == ModeRange::Help)
+		{
+			helpSelected();
+		}
+
 		while (modeSelected == ModeRange::partieRapide)
 		{
 			quickMatchSelected();
@@ -131,12 +136,15 @@ void GameManager::startGame()
 
 void GameManager::gameModeChoice()
 {
+	system("cls");
+
 	cout << endl << "Choose your Game mode:" << endl << endl;
 	for (unsigned int i = 0; i < listGameMode.size(); ++i)
 	{
 		cout << "- " << (i+1) << " : " << listGameMode[i]->getName() << endl;
 	}
 
+	cout << "- 8 : How To Play" << endl;
 	cout << "- 9 : Exit Game" << endl;
 
 	cout << endl;
@@ -154,6 +162,9 @@ void GameManager::gameModeChoice()
 			break;
 		case ModeRange::partieRapide:
 			modeSelected = ModeRange::partieRapide;
+			break;
+		case ModeRange::Help:
+			modeSelected = ModeRange::Help;
 			break;
 		case ModeRange::Exit:
 			modeSelected = ModeRange::Exit;
@@ -175,6 +186,33 @@ void GameManager::tournamentSelected()
 {
 	listGameMode[modeSelected]->selectMode();
 	modeSelected = ModeRange::None;
+}
+
+void GameManager::helpSelected()
+{
+	system("cls");
+
+	cout << endl;
+	cout << "--------------------------------------------------------------------------------" << endl;
+	cout << " HOW TO PLAY" << endl;
+	cout << "--------------------------------------------------------------------------------" << endl;
+	cout << "Left   : Q" << endl;
+	cout << "Right  : D" << endl;
+	cout << "Jump   : Z" << endl;
+	cout << "Crouch : S" << endl;
+	cout << "Block  : E" << endl;
+	cout << "Attack : A" << endl;
+	cout << "--------------------------------------------------------------------------------" << endl;
+	cout << "The keys are the same for both players." << endl;
+	cout << "You block during a certain time and can't make another input during that time." << endl;
+	cout << "While blocking, you have a slight chance to die." << endl;
+	cout << listPlayer[0]->getName() << " is Player 1." << endl;
+	cout << listPlayer[1]->getName() << " is Player 2." << endl;
+	cout << endl << endl;
+
+	modeSelected = ModeRange::None;
+
+	system("pause");
 }
 
 void GameManager::quickMatchSelected()
@@ -380,16 +418,16 @@ void GameManager::checkEndRound()
 		{
 			++numVictoryP1;
 			++numVictoryP2;
-			cout << endl << endl << "----------------------------------------------------------------" << endl;
+			cout << endl << endl << "--------------------------------------------------------------------------------" << endl;
 			cout << "DOUBLE KO!" << endl;
-			cout << endl << endl << "----------------------------------------------------------------" << endl;
+			cout << endl << endl << "--------------------------------------------------------------------------------" << endl;
 		}
 		else
 		{
 			++numVictoryP2;
-			cout << endl << endl << "----------------------------------------------------------------" << endl;
+			cout << endl << endl << "--------------------------------------------------------------------------------" << endl;
 			cout << listPlayer[1]->getName() << " Wins!" << endl;
-			cout << endl << endl << "----------------------------------------------------------------" << endl;
+			cout << endl << endl << "--------------------------------------------------------------------------------" << endl;
 		}
 	}
 	else
@@ -397,9 +435,9 @@ void GameManager::checkEndRound()
 		if (p2Death)
 		{
 			++numVictoryP1;
-			cout << endl << endl << "----------------------------------------------------------------" << endl;
+			cout << endl << endl << "--------------------------------------------------------------------------------" << endl;
 			cout << listPlayer[0]->getName() << " Wins!" << endl;
-			cout << endl << endl << "----------------------------------------------------------------" << endl;
+			cout << endl << endl << "--------------------------------------------------------------------------------" << endl;
 		}
 	}
 

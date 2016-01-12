@@ -28,6 +28,7 @@ class GameManager : public ObserverDefeat
 		void adventureSelected();
 		void tournamentSelected();
 		void quickMatchSelected();
+		void helpSelected();
 		void arenaChoice();
 		void optionChoice();
 		void fighting();
@@ -39,7 +40,7 @@ class GameManager : public ObserverDefeat
 	private:
 		GameManager();
 		~GameManager();
-		enum ModeRange { None = -1, partieRapide = 2, Tournoi = 1, Aventure = 0, Exit = 8 };
+		enum ModeRange { None = -1, partieRapide = 2, Tournoi = 1, Aventure = 0, Help = 7, Exit = 8 };
 		ModeRange modeSelected;
 		bool run, fightRun, roundEnded, resetMatch, returnToArenaSelection, returnToOptionSelection ,p1Death, p2Death;
 		int fps = 30, numVictoryP1, numVictoryP2;
